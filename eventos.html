@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LCI-Eventos</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/styles.css" />
+
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    />
+
+    <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    crossorigin="anonymous"
+    defer>
+    </script>
+
+    <!--  Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
+
+    <!-- JS propios -->
+    <script src="./js/hamburguer-menu.js" defer></script>
+    <script src="./js/eventos-storage.js" defer></script>
+    <script src="./js/modal-evento.js" defer></script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400..700&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+    />
+  </head>
+
+  <body>
+    <!-- =============================================================== -->
+    <!-- Navbar -->
+    <!-- =============================================================== -->
+
+    <nav class="navbar">
+      <div class="navbar-container">
+        <button class="hamburguer-menu" aria-label="Abrir menú">
+          <span class="material-symbols-outlined icon-open">menu</span>
+        </button>
+
+        <a href="index.html" aria-label="Ir a cartelera">
+          <img
+            src="./assets/icons/logo.svg"
+            alt="Cartelera"
+            class="navbar-logo"
+            loading="lazy"
+          />
+        </a>
+
+        <ul class="navbar-menu">
+          <button class="sidenav-close" aria-label="Cerrar menú">
+            <span class="material-symbols-outlined">cancel</span>
+          </button>
+
+          <li>
+            <a href="index.html" class="nav-btn-red">
+              <span class="material-symbols-outlined nav-btn-icon">movie</span>
+              <span class="nav-btn-text">Cartelera</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="compras.html" class="nav-btn-orange">
+              <span class="material-symbols-outlined nav-btn-icon"
+                >confirmation_number</span
+              >
+              <span class="nav-btn-text">Compras</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="watchlist.html" class="nav-btn-green">
+              <span class="material-symbols-outlined nav-btn-icon"
+                >favorite</span
+              >
+              <span class="nav-btn-text">Watchlist</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="eventos.html" class="nav-btn-blue">
+              <span class="material-symbols-outlined nav-btn-icon">event</span>
+              <span class="nav-btn-text">Eventos</span>
+            </a>
+          </li>
+        </ul>
+
+        <a href="watchlist.html" class="nav-icon icon-link" aria-label="Cuenta">
+          <span class="material-symbols-outlined">account_circle</span>
+        </a>
+      </div>
+    </nav>
+
+    <!-- =============================================================== -->
+    <!-- Main -->
+    <!-- =============================================================== -->
+
+    <main class="main-content">
+
+      <!-- =============================================================== -->
+      <!-- Eventos -->
+      <!-- =============================================================== -->
+
+        <h2 class="heading-2">Eventos nacionales</h2>
+
+        <div class="eventos-seccion">
+
+          <!-- Card 1 -->
+          <div class="card-evento">
+            <div class="imagen-evento">
+              <img
+                src="./images/card-evento-7.jpg"
+                class="img-fluid-evento"
+                alt="Coffee Talk: Nuevo Cine Mexicano"
+                loading="lazy"
+              />
+            </div>
+            <div class="card-content">
+              <h5 class="subheader-2"></h5>
+              <p class="descripcion"></p>
+              <button class="tag-ubicacion" type="button"></button>
+              <button
+                type="button"
+                class="btn-detalles"
+                data-bs-toggle="modal"
+                data-bs-target="#modalEvento"
+                data-evento="morelia"
+              >
+                <span class="material-symbols-outlined">info</span>
+                Ver detalles
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="card-evento">
+            <div class="imagen-evento">
+              <img
+                src="./images/card-evento-6.jpg"
+                class="img-fluid-evento"
+                alt="Beer & Movies: Cine de Culto MX"
+                loading="lazy"
+              />
+            </div>
+            <div class="card-content">
+              <h5 class="subheader-2"></h5>
+              <p class="descripcion"></p>
+              <button class="tag-ubicacion" type="button"></button>
+              <button
+                type="button"
+                class="btn-detalles"
+                data-bs-toggle="modal"
+                data-bs-target="#modalEvento"
+                data-evento="roma"
+              >
+                <span class="material-symbols-outlined">info</span>
+                Ver detalles
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="card-evento">
+            <div class="imagen-evento">
+              <img
+                src="./images/card-evento-8.jpg"
+                class="img-fluid-evento"
+                alt="Análisis de Película: Cine Autoral MX"
+                loading="lazy"
+              />
+            </div>
+            <div class="card-content">
+              <h5 class="subheader-2"></h5>
+              <p class="descripcion"></p>
+              <button class="tag-ubicacion" type="button"></button>
+              <button
+                type="button"
+                class="btn-detalles"
+                data-bs-toggle="modal"
+                data-bs-target="#modalEvento"
+                data-evento="coyoacan"
+              >
+                <span class="material-symbols-outlined">info</span>
+                Ver detalles
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="card-evento">
+            <div class="imagen-evento">
+              <img
+                src="./images/card-evento-1.jpg"
+                class="img-fluid-evento"
+                alt="Taller de Dirección Cinematográfica"
+                loading="lazy"
+              />
+            </div>
+            <div class="card-content">
+              <h5 class="subheader-2"></h5>
+              <p class="descripcion"></p>
+              <button class="tag-ubicacion" type="button"></button>
+              <button
+                type="button"
+                class="btn-detalles"
+                data-bs-toggle="modal"
+                data-bs-target="#modalEvento"
+                data-evento="polanco"
+              >
+                <span class="material-symbols-outlined">info</span>
+                Ver detalles
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="card-evento">
+            <div class="imagen-evento">
+              <img
+                src="./images/card-evento-2.jpg"
+                class="img-fluid-evento"
+                alt="Proyección Especial: Cine de Autor MX"
+                loading="lazy"
+              />
+            </div>
+            <div class="card-content">
+              <h5 class="subheader-2"></h5>
+              <p class="descripcion"></p>
+              <button class="tag-ubicacion" type="button"></button>
+              <button
+                type="button"
+                class="btn-detalles"
+                data-bs-toggle="modal"
+                data-bs-target="#modalEvento"
+                data-evento="sanmiguel"
+              >
+                <span class="material-symbols-outlined">info</span>
+                Ver detalles
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 6 -->
+          <div class="card-evento">
+            <div class="imagen-evento">
+              <img
+                src="./images/card-evento-4.jpg"
+                class="img-fluid-evento"
+                alt="Cine y Comunidad: Cortos MX"
+                loading="lazy"
+              />
+            </div>
+            <div class="card-content">
+              <h5 class="subheader-2"></h5>
+              <p class="descripcion"></p>
+              <button class="tag-ubicacion" type="button"></button>
+              <button
+                type="button"
+                class="btn-detalles"
+                data-bs-toggle="modal"
+                data-bs-target="#modalEvento"
+                data-evento="guanajuato"
+              >
+                <span class="material-symbols-outlined">info</span>
+                Ver detalles
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 7 -->
+          <div class="card-evento">
+            <div class="imagen-evento">
+              <img
+                src="./images/card-evento-3.jpg"
+                class="img-fluid-evento"
+                alt="Beer & Cine Regio"
+                loading="lazy"
+              />
+            </div>
+            <div class="card-content">
+              <h5 class="subheader-2"></h5>
+              <p class="descripcion"></p>
+              <button class="tag-ubicacion" type="button"></button>
+              <button
+                type="button"
+                class="btn-detalles"
+                data-bs-toggle="modal"
+                data-bs-target="#modalEvento"
+                data-evento="monterrey"
+              >
+                <span class="material-symbols-outlined">info</span>
+                Ver detalles
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 8 -->
+          <div class="card-evento">
+            <div class="imagen-evento">
+              <img
+                src="./images/card-evento-9.jpg"
+                class="img-fluid-evento"
+                alt="Coffee Talk: Producción Independiente"
+                loading="lazy"
+              />
+            </div>
+            <div class="card-content">
+              <h5 class="subheader-2"></h5>
+              <p class="descripcion"></p>
+              <button class="tag-ubicacion" type="button"></button>
+              <button
+                type="button"
+                class="btn-detalles"
+                data-bs-toggle="modal"
+                data-bs-target="#modalEvento"
+                data-evento="spgg"
+              >
+                <span class="material-symbols-outlined">info</span>
+                Ver detalles
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 9 -->
+          <div class="card-evento">
+            <div class="imagen-evento">
+              <img
+                src="./images/card-evento-5.jpg"
+                class="img-fluid-evento"
+                alt="Cine al Aire Libre: Culto MX"
+                loading="lazy"
+              />
+            </div>
+            <div class="card-content">
+              <h5 class="subheader-2"></h5>
+              <p class="descripcion"></p>
+              <button class="tag-ubicacion" type="button"></button>
+              <button
+                type="button"
+                class="btn-detalles"
+                data-bs-toggle="modal"
+                data-bs-target="#modalEvento"
+                data-evento="playadelcarmen"
+              >
+                <span class="material-symbols-outlined">info</span>
+                Ver detalles
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Modal -->
+      <div
+        class="modal fade"
+        id="modalEvento"
+        tabindex="-1"
+        aria-labelledby="modalEventoLabel"
+        aria-hidden="true"
+        >
+
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+
+            <div class="modal-header">
+             <h5 class="modal-title" id="modalEventoLabel"></h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+            </div>
+
+            <div class="modal-body">
+              <p id="modalEventoDescripcion"></p>
+            
+              <p class="modal-info modal-horario">
+                <strong>Horario:</strong>
+                <span id="modalEventoHorario"></span>
+              </p>
+              
+              <p class="modal-info modal-ubicacion">
+                <strong>Ubicación:</strong>
+                <span id="modalEventoUbicacion"></span>
+              </p>
+            
+              <div id="mapEvento" style="height: 240px; border-radius: 12px;"></div>
+            </div>
+
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+              >
+             Cerrar
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      <section class="autoscroll">
+        <div class="carousel">
+          <div class="group">
+            <div class="img-evento">
+              <img
+                src="./images/evento-1.jpg" 
+                alt="Alejandro González Iñárritu" />
+            </div>
+            <div class="img-evento">
+              <img 
+              src="./images/evento-2.jpg" 
+              alt="Jodie Foster" />
+            </div>
+            <div class="img-evento">
+              <img
+                src="./images/evento-3.jpg" 
+                alt="Willem dafoe" />
+            </div>
+            <div class="img-evento">
+              <img
+                src="./images/evento-4.jpg" 
+                alt="Keanu reeves" />
+            </div>
+            <div class="img-evento">
+              <img 
+                src="./images/evento-5.jpg" 
+                alt="Toni Collette" />
+            </div>
+            <div class="img-evento">
+              <img
+                src="./images/evento-6.jpg" 
+                alt="Guillermo del Toro" />
+            </div>
+            <div class="img-evento">
+              <img
+                src="./images/evento-7.jpg" 
+                alt="Evento sala" />
+            </div>
+            <div class="img-evento">
+              <img
+                src="./images/evento-8.jpg" 
+                alt="Inaguracion"/>
+            </div>
+            <div class="img-evento">
+              <img
+                src="./images/evento-9.jpg" 
+                alt="Francis Fooppola"/>
+            </div>
+            <div class="img-evento">
+              <img
+                src="./images/evento-10.jpg" 
+                alt="Austin Butler"/>
+            </div>
+          </div>
+
+          <div class="group">
+            <div class="img-evento">
+              <img
+                src="./images/evento-1.jpg" 
+                alt="Alejandro González Iñárritu" />
+            </div>
+            <div class="img-evento">
+              <img 
+              src="./images/evento-2.jpg" 
+              alt="Jodie Foster" />
+            </div>
+            <div class="img-evento">
+              <img
+                src="./images/evento-3.jpg" 
+                alt="Willem dafoe" />
+            </div>
+            <div class="img-evento">
+              <img
+                src="./images/evento-4.jpg" 
+                alt="Keanu reeves" />
+            </div>
+            <div class="img-evento">
+              <img 
+                src="./images/evento-5.jpg" 
+                alt="Toni Collette" />
+            </div>
+            <div class="img-evento">
+              <img
+                src="./images/evento-6.jpg" 
+                alt="Guillermo del Toro" />
+            </div>
+            <div class="img-evento">
+              <img
+                src="./images/evento-7.jpg" 
+                alt="Evento sala" />
+            </div>
+            <div class="img-evento">
+              <img
+                src="./images/evento-8.jpg" 
+                alt="Inaguracion"/>
+            </div>
+            <div class="img-evento">
+              <img
+                src="./images/evento-9.jpg" 
+                alt="Francis Fooppola"/>
+            </div>
+            <div class="img-evento">
+              <img
+                src="./images/evento-10.jpg" 
+                alt="Austin Butler"/>
+            </div>
+          </div>
+
+          <div class="group">
+            <div class="img-evento">
+              <img
+                src="./images/evento-1.jpg" 
+                alt="Alejandro González Iñárritu" />
+            </div>
+            <div class="img-evento">
+              <img 
+              src="./images/evento-2.jpg" 
+              alt="Jodie Foster" />
+            </div>
+            <div class="img-evento">
+              <img
+                src="./images/evento-3.jpg" 
+                alt="Willem dafoe" />
+            </div>
+            <div class="img-evento">
+              <img
+                src="./images/evento-4.jpg" 
+                alt="Keanu reeves" />
+            </div>
+            <div class="img-evento">
+              <img 
+                src="./images/evento-5.jpg" 
+                alt="Toni Collette" />
+            </div>
+            <div class="img-evento">
+              <img
+                src="./images/evento-6.jpg" 
+                alt="Guillermo del Toro" />
+            </div>
+            <div class="img-evento">
+              <img
+                src="./images/evento-7.jpg" 
+                alt="Evento sala" />
+            </div>
+            <div class="img-evento">
+              <img
+                src="./images/evento-8.jpg" 
+                alt="Inaguracion"/>
+            </div>
+            <div class="img-evento">
+              <img
+                src="./images/evento-9.jpg" 
+                alt="Francis Fooppola"/>
+            </div>
+            <div class="img-evento">
+              <img
+                src="./images/evento-10.jpg" 
+                alt="Austin Butler"/>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- =============================================================== -->
+    <!-- Footer -->
+    <!-- =============================================================== -->
+
+    <!-- =============================================================== -->
+    <!-- Footer -->
+    <!-- =============================================================== -->
+
+    <footer class="main-footer">
+      <ul class="list">
+        <li><a href="index.html">Cartelera</a></li>
+        <li><a href="compras.html">Compras</a></li>
+        <li><a href="watchlist.html">Watchlist</a></li>
+        <li><a href="eventos.html">Eventos</a></li>
+      </ul>
+
+      <div class="redes-sociales">
+        <a
+          href="https://www.instagram.com/letterboxd/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Letterboxd en Instagram"
+        >
+          <img
+            src="./assets/icons/icon-insta.svg"
+            alt="Instagram"
+            class="social-icon"
+          />
+        </a>
+
+        <a
+          href="https://www.threads.net/@letterboxd"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Letterboxd en Threads"
+        >
+          <img
+            src="./assets/icons/icon-threads.svg"
+            alt="Threads"
+            class="social-icon"
+          />
+        </a>
+
+        <a
+          href="https://www.tiktok.com/@letterboxd"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Letterboxd en TikTok"
+        >
+          <img
+            src="./assets/icons/icon-tiktok.svg"
+            alt="TikTok"
+            class="social-icon"
+          />
+        </a>
+
+        <a
+          href="https://discord.com/invite/letterboxd"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Comunidad Letterboxd en Discord"
+        >
+          <img
+            src="./assets/icons/icon-discord.svg"
+            alt="Discord"
+            class="social-icon"
+          />
+        </a>
+      </div>
+
+      <div class="logos">
+        <img
+          src="./assets/icons/logo.svg"
+          alt="Letterboxd Circuito Independiente"
+          class="lci-logo"
+        />
+        <img
+          src="./assets/icons/letterboxd-logo-v-neg-rgb.svg"
+          alt="Letterboxd"
+          class="letterboxd-logo"
+        />
+      </div>
+
+      <p class="copyright">Letterboxd Circuito Independiente ⓒ 2026</p>
+    </footer>
+
+  </body>
+</html>

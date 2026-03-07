@@ -1,0 +1,49 @@
+@use "../abstracts/variables" as vars;
+@use "../abstracts/mixins" as mixins;
+
+/* Headers */
+h1 {
+  @include mixins.h1-fluid;
+}
+
+h2 {
+  @include mixins.h2-fluid;
+}
+
+h3 {
+  @include mixins.h3-fluid;
+}
+
+.subh1 {
+  @include mixins.subh1-fluid;
+}
+
+.subh2 {
+  @include mixins.subh2-fluid;
+}
+
+/* CTA */
+.cta-1 {
+  @include mixins.cta-1-fluid;
+}
+
+.cta-2 {
+  @include mixins.cta-2-fluid;
+}
+
+/* Body */
+.body-1 {
+  @include mixins.body-1-fluid;
+}
+
+.body-2 {
+  @include mixins.body-2-fluid;
+}
+
+.body-3 {
+  @include mixins.body-3-fluid;
+}
+
+.body-4 {
+  @include mixins.body-4-fluid;
+}

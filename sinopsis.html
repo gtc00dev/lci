@@ -1,0 +1,783 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LCI-Sinopsis</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="preload" as="image" href="./images/hero-banner-4-desktop.jpg" />
+
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <!--  Leaflet -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      defer
+    ></script>
+
+    <!--  Flatpickr -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/es.js"></script>
+
+    <!-- Quill -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/quill@1.3.7/dist/quill.snow.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/quill@1.3.7/dist/quill.min.js"></script>
+
+    <!-- JS propios -->
+    <script src="./js/hamburguer-menu.js" defer></script>
+    <script src="./js/modal-sala-map.js" defer></script>
+    <script src="./js/modal-fecha-calendar.js" defer></script>
+    <script src="./js/favorite.js" defer></script>
+    <script src="./js/modal-resena-editor.js" defer></script>
+    <script src="./js/scrolldown-reviews.js" defer></script>
+    <script src="./js/api-movies.js" defer></script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400..700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Icons -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+    />
+  </head>
+
+  <body>
+    <!-- =============================================================== -->
+    <!-- Navbar -->
+    <!-- =============================================================== -->
+
+    <nav class="navbar">
+      <div class="navbar-container">
+        <button class="hamburguer-menu" aria-label="Abrir menú">
+          <span class="material-symbols-outlined icon-open">menu</span>
+        </button>
+
+        <a href="index.html" aria-label="Ir a cartelera">
+          <img
+            src="./assets/icons/logo.svg"
+            alt="Cartelera"
+            class="navbar-logo"
+            loading="lazy"
+          />
+        </a>
+
+        <ul class="navbar-menu">
+          <button class="sidenav-close" aria-label="Cerrar menú">
+            <span class="material-symbols-outlined">cancel</span>
+          </button>
+
+          <li>
+            <a href="index.html" class="nav-btn-red">
+              <span class="material-symbols-outlined nav-btn-icon">movie</span>
+              <span class="nav-btn-text">Cartelera</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="compras.html" class="nav-btn-orange">
+              <span class="material-symbols-outlined nav-btn-icon"
+                >confirmation_number</span
+              >
+              <span class="nav-btn-text">Compras</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="watchlist.html" class="nav-btn-green">
+              <span class="material-symbols-outlined nav-btn-icon"
+                >favorite</span
+              >
+              <span class="nav-btn-text">Watchlist</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="eventos.html" class="nav-btn-blue">
+              <span class="material-symbols-outlined nav-btn-icon">event</span>
+              <span class="nav-btn-text">Eventos</span>
+            </a>
+          </li>
+        </ul>
+
+        <a href="watchlist.html" class="nav-icon icon-link" aria-label="Cuenta">
+          <span class="material-symbols-outlined">account_circle</span>
+        </a>
+      </div>
+    </nav>
+
+    <!-- =============================================================== -->
+    <!-- Main -->
+    <!-- =============================================================== -->
+
+    <main class="main-content">
+      <!-- =============================================================== -->
+      <!-- Botones -->
+      <!-- =============================================================== -->
+
+      <div class="botones">
+        <a href="index.html" class="back" aria-label="Volver a cartelera">
+          <span class="material-symbols-outlined"> arrow_left_alt </span>
+        </a>
+
+        <div class="favorite" aria-label="Agregar a favoritos">
+          <span class="material-symbols-outlined" data-icon> favorite </span>
+        </div>
+      </div>
+
+      <!-- =============================================================== -->
+      <!-- Titulo pelicula -->
+      <!-- =============================================================== -->
+
+      <div class="titulo-pelicula">
+        <h2
+          class="heading-2"
+          data-titulo="Y Tu Mamá También"
+          data-duracion="1h 46m"
+          data-genero="Drama"
+          data-fecha="Disponible hasta 12 Enero 2026"
+          data-poster="./images/poster-pelicula-y-tu-mama-tambien.jpg"
+        >
+          Y Tu Mamá También
+        </h2>
+
+        <div class="review-section">
+          <div class="rating">
+            <span class="material-symbols-outlined star-full">star</span>
+            <span class="material-symbols-outlined star-full">star</span>
+            <span class="material-symbols-outlined star-full">star</span>
+            <span class="material-symbols-outlined star-full">star</span>
+            <span class="material-symbols-outlined star-half">star_half</span>
+            <span class="rating-text">4.5 / 5</span>
+          </div>
+
+          <div class="scrolldown">
+            <a href="#reviews" class="review" aria-label="Ver reviews">
+              <p>Leer reseñas</p>
+              <span class="material-symbols-outlined">
+                arrow_downward_alt
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- =============================================================== -->
+      <!-- Carousel -->
+      <!-- =============================================================== -->
+
+      <div
+        id="carouselExampleControls"
+        class="carousel slide"
+        data-bs-ride="false"
+      >
+        <div class="carousel-inner">
+          <!-- Video -->
+          <div class="carousel-item active">
+            <div class="video-wrapper">
+              <iframe
+                src="https://www.youtube.com/embed/VbjV5qyQLJs?enablejsapi=1&rel=0"
+                title="Trailer"
+                allow="encrypted-media; picture-in-picture"
+                allowfullscreen
+              >
+              </iframe>
+            </div>
+          </div>
+
+          <!-- Imagen 4 -->
+          <div class="carousel-item">
+            <picture>
+              <source
+                media="(max-width: 576px)"
+                srcset="./images/hero-banner-4-mobile.jpg"
+              />
+              <img
+                src="./images/hero-banner-4-desktop.jpg"
+                class="d-block w-100"
+                alt="Y Tu Mamá También"
+                loading="lazy"
+              />
+            </picture>
+          </div>
+
+          <!-- Imagen 5 -->
+          <div class="carousel-item">
+            <picture>
+              <source
+                media="(max-width: 576px)"
+                srcset="./images/hero-banner-5-mobile.jpg"
+              />
+              <img
+                src="./images/hero-banner-5-desktop.jpg"
+                class="d-block w-100"
+                alt="Y Tu Mamá También"
+                loading="lazy"
+              />
+            </picture>
+          </div>
+
+          <!-- Imagen 6 -->
+          <div class="carousel-item">
+            <picture>
+              <source
+                media="(max-width: 576px)"
+                srcset="./images/hero-banner-6-mobile.jpg"
+              />
+              <img
+                src="./images/hero-banner-6-desktop.jpg"
+                class="d-block w-100"
+                alt="Y Tu Mamá También"
+                loading="lazy"
+              />
+            </picture>
+          </div>
+        </div>
+
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselExampleControls"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon"></span>
+        </button>
+
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselExampleControls"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon"></span>
+        </button>
+      </div>
+
+      <!-- =============================================================== -->
+      <!-- Detalles -->
+      <!-- =============================================================== -->
+
+      <div class="detalles">
+        <div class="info-pelicula">
+          <p>2001</p>
+          <p>1h 46min</p>
+          <p>Dirección: Alfonso Cuarón</p>
+        </div>
+
+        <div class="pills">
+          <button class="pill-genero">Drama</button>
+          <button class="pill-genero">Romance</button>
+        </div>
+      </div>
+
+      <!-- =============================================================== -->
+      <!-- Sinopsis -->
+      <!-- =============================================================== -->
+
+      <div class="sinopsis">
+        <h2 class="heading-2">Sinopsis</h2>
+
+        <p class="sinopsis-text">
+          Dos adolescentes y una atractiva mujer mayor se embarcan en un viaje
+          por carretera a través de México para aprender cosas sobre la vida, la
+          amistad, el sexo y de ellos mismos.
+          <a
+            href="#offcanvasSinopsis"
+            class="leer-mas"
+            data-bs-toggle="offcanvas"
+            aria-controls="offcanvasSinopsis"
+          >
+            Leer más
+          </a>
+        </p>
+
+        <ul class="sinopsis-actions">
+          <li>
+            <a href="horarios.html" class="nav-btn-green">
+              <span class="material-symbols-outlined">confirmation_number</span>
+              <span class="nav-btn-text">Ver horarios</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div
+        class="offcanvas offcanvas-end offcanvas-sinopsis"
+        tabindex="-1"
+        id="offcanvasSinopsis"
+        data-bs-backdrop="static"
+        aria-labelledby="offcanvasSinopsisLabel"
+      >
+        <div class="offcanvas-header">
+          <button
+            type="button"
+            class="offcanvas-close"
+            data-bs-dismiss="offcanvas"
+            aria-label="Cerrar"
+          >
+            <span class="material-symbols-outlined">cancel</span>
+          </button>
+        </div>
+
+        <div class="offcanvas-body">
+          <section class="pelicula-dinamica" id="dinamica-offcanvas"></section>
+        </div>
+      </div>
+
+      <!-- =============================================================== -->
+      <!-- Reparto -->
+      <!-- =============================================================== -->
+
+      <div class="reparto">
+        <h2 class="heading-2">Reparto</h2>
+
+        <div class="reparto-grid">
+          <div class="actor">
+            <img src="./images/actor-1.png" alt="Diego Luna" loading="lazy" />
+            <label class="nombre-actor">Diego Luna</label>
+          </div>
+
+          <div class="actor">
+            <img
+              src="./images/actor-2.png"
+              alt="Gael García Bernal"
+              loading="lazy"
+            />
+            <label class="nombre-actor">Gael García Bernal</label>
+          </div>
+
+          <div class="actor">
+            <img
+              src="./images/actor-3.png"
+              alt="Maribel Verdú"
+              loading="lazy"
+            />
+            <label class="nombre-actor">Maribel Verdú</label>
+          </div>
+
+          <div class="actor">
+            <img
+              src="./images/actor-4.png"
+              alt="Daniel Giménez Cacho"
+              loading="lazy"
+            />
+            <label class="nombre-actor">Daniel Giménez Cacho</label>
+          </div>
+
+          <div class="actor">
+            <img src="./images/actor-5.png" alt="María Aura" loading="lazy" />
+            <label class="nombre-actor">María Aura</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- =============================================================== -->
+      <!-- Reseñas -->
+      <!-- =============================================================== -->
+
+      <section class="reviews-section">
+        <h2 class="heading-2-review">Reseñas</h2>
+
+        <div class="reviews-premios">
+          <div class="premio">
+            <span class="premio-header">
+              <span class="material-symbols-outlined"> visibility </span>
+              <span class="premio-nombre">Vistas</span>
+            </span>
+            <span class="premio-fecha">68 M</span>
+          </div>
+
+          <div class="premio">
+            <span class="premio-header">
+              <span class="material-symbols-outlined"> trophy </span>
+              <span class="premio-nombre">Premios Independent Spirit</span>
+            </span>
+            <span class="premio-fecha">Mejor película extranjera</span>
+          </div>
+
+          <div class="premio">
+            <span class="premio-header">
+              <span class="material-symbols-outlined"> trophy </span>
+              <span class="premio-nombre"
+                >Festival Internacional de Cine de Venecia</span
+              >
+            </span>
+            <span class="premio-fecha">Mejor Guion</span>
+          </div>
+        </div>
+
+        <h3 class="reviews-subtitle">Reseñas destacadas</h3>
+
+        <div class="reviews-grid">
+          <article class="reviews-card">
+            <div class="header-reviews-card">
+              <div class="reviews-content">
+                <img
+                  src="./images/critico-1.png"
+                  alt="Foto de usuario"
+                  class="reviews-avatar"
+                  loading="lazy"
+                />
+                <span class="reviews-usuario">Lucía Gómez</span>
+              </div>
+
+              <div class="rating">
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="material-symbols-outlined star-half"
+                  >star_half</span
+                >
+                <span class="rating-text">4.5 / 5</span>
+              </div>
+            </div>
+
+            <div class="quote">
+              <p>
+                "Cuarón transforma un viaje ligero en una reflexión honesta
+                sobre clase y pérdida."
+              </p>
+            </div>
+          </article>
+
+          <article class="reviews-card">
+            <div class="header-reviews-card">
+              <div class="reviews-content">
+                <img
+                  src="./images/critico-2.png"
+                  alt="Foto de usuario"
+                  class="reviews-avatar"
+                  loading="lazy"
+                />
+                <span class="reviews-usuario">Ana Martínez</span>
+              </div>
+
+              <div class="rating">
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="material-symbols-outlined star-half"
+                  >star_half</span
+                >
+                <span class="rating-text">4.5 / 5</span>
+              </div>
+            </div>
+
+            <div class="quote">
+              <p>
+                "Cruda, sensual y profundamente humana: una road movie que
+                redefine el coming-of-age."
+              </p>
+            </div>
+          </article>
+
+          <article class="reviews-card">
+            <div class="header-reviews-card">
+              <div class="reviews-content">
+                <img
+                  src="./images/critico-3.png"
+                  alt="Foto de usuario"
+                  class="reviews-avatar"
+                  loading="lazy"
+                />
+                <span class="reviews-usuario">Carlos Ríos</span>
+              </div>
+
+              <div class="rating">
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="material-symbols-outlined star-half"
+                  >star_half</span
+                >
+                <span class="rating-text">4.5 / 5</span>
+              </div>
+            </div>
+
+            <div class="quote">
+              <p>
+                "Un retrato íntimo y provocador de la juventud, donde el deseo y
+                la política conviven."
+              </p>
+            </div>
+          </article>
+        </div>
+
+        <a
+          href="https://letterboxd.com"
+          target="_blank"
+          rel="noopener"
+          class="reviews-letterboxd"
+        >
+          Leer más en Letterboxd
+          <span class="material-symbols-outlined"> arrow_outward </span>
+        </a>
+
+        <ul class="reviews-actions">
+          <li>
+            <a
+              href="#"
+              class="nav-btn-green"
+              data-bs-toggle="modal"
+              data-bs-target="#modalResena"
+            >
+              <span class="material-symbols-outlined">reviews</span>
+              <span class="nav-btn-text">Escribir reseña</span>
+            </a>
+          </li>
+        </ul>
+      </section>
+
+      <div
+        class="modal fade"
+        id="modalResena"
+        tabindex="-1"
+        aria-labelledby="modalResenaLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalResenaLabel">Escribir reseña</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Cerrar"
+              ></button>
+            </div>
+
+            <div class="modal-body">
+              <div class="modal-movie-header">
+                <section
+                  class="pelicula-dinamica"
+                  id="dinamica-offcanvas"
+                ></section>
+
+                <div class="modal-movie-info">
+                  <h3 class="modal-movie-title">Y Tu Mamá También</h3>
+
+                  <div class="rating rating-animated">
+                    <span class="material-symbols-outlined star-full"
+                      >star</span
+                    >
+                    <span class="material-symbols-outlined star-full"
+                      >star</span
+                    >
+                    <span class="material-symbols-outlined star-full"
+                      >star</span
+                    >
+                    <span class="material-symbols-outlined star-full"
+                      >star</span
+                    >
+                    <span class="material-symbols-outlined star-half"
+                      >star_half</span
+                    >
+                    <span class="rating-text">4.5 / 5</span>
+                  </div>
+                </div>
+              </div>
+
+              <div id="editor"></div>
+
+              <p class="review-disclaimer">
+                * Al publicar tu reseña aceptas que será compartida en
+                Letterboxd.
+              </p>
+            </div>
+
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Cancelar
+              </button>
+
+              <button
+                type="button"
+                class="btn btn-primary"
+                id="btnPublicarResena"
+              >
+                Publicar reseña
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div
+          id="toastResena"
+          class="toast toast-resena align-items-center border-0"
+          role="alert"
+          aria-live="assertive"
+          aria-atomic="true"
+        >
+          <div class="d-flex">
+            <div class="toast-body d-flex align-items-center gap-2">
+              <span class="material-symbols-outlined">check_circle</span>
+              Reseña publicada correctamente
+            </div>
+
+            <button
+              type="button"
+              class="btn-close btn-close-white me-2 m-auto"
+              data-bs-dismiss="toast"
+              aria-label="Cerrar"
+            ></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Toast Watchlist -->
+      <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div
+          id="toastWatchlist"
+          class="toast toast-watchlist"
+          role="alert"
+          aria-live="assertive"
+          aria-atomic="true"
+        >
+          <div class="d-flex">
+            <div class="toast-body d-flex align-items-center gap-2">
+              <span class="material-symbols-outlined text-success">
+                check_circle
+              </span>
+              Agregado correctamente
+              <a
+                href="watchlist.html"
+                class="fw-bold text-decoration-underline"
+              >
+                Ir a Watchlist
+              </a>
+            </div>
+
+            <button
+              type="button"
+              class="btn-close btn-close-white me-2 m-auto"
+              data-bs-dismiss="toast"
+              aria-label="Cerrar"
+            ></button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- =============================================================== -->
+    <!-- Footer -->
+    <!-- =============================================================== -->
+
+    <footer class="main-footer">
+      <ul class="list">
+        <li><a href="index.html">Cartelera</a></li>
+        <li><a href="compras.html">Compras</a></li>
+        <li><a href="watchlist.html">Watchlist</a></li>
+        <li><a href="eventos.html">Eventos</a></li>
+      </ul>
+
+      <div class="redes-sociales">
+        <a
+          href="https://www.instagram.com/letterboxd/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Letterboxd en Instagram"
+        >
+          <img
+            src="./assets/icons/icon-insta.svg"
+            alt="Instagram"
+            class="social-icon"
+          />
+        </a>
+
+        <a
+          href="https://www.threads.net/@letterboxd"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Letterboxd en Threads"
+        >
+          <img
+            src="./assets/icons/icon-threads.svg"
+            alt="Threads"
+            class="social-icon"
+          />
+        </a>
+
+        <a
+          href="https://www.tiktok.com/@letterboxd"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Letterboxd en TikTok"
+        >
+          <img
+            src="./assets/icons/icon-tiktok.svg"
+            alt="TikTok"
+            class="social-icon"
+          />
+        </a>
+
+        <a
+          href="https://discord.com/invite/letterboxd"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Comunidad Letterboxd en Discord"
+        >
+          <img
+            src="./assets/icons/icon-discord.svg"
+            alt="Discord"
+            class="social-icon"
+          />
+        </a>
+      </div>
+
+      <div class="logos">
+        <img
+          src="./assets/icons/logo.svg"
+          alt="Letterboxd Circuito Independiente"
+          class="lci-logo"
+        />
+        <img
+          src="./assets/icons/letterboxd-logo-v-neg-rgb.svg"
+          alt="Letterboxd"
+          class="letterboxd-logo"
+        />
+      </div>
+
+      <p class="copyright">Letterboxd Circuito Independiente ⓒ 2026</p>
+    </footer>
+  </body>
+</html>

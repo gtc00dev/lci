@@ -1,0 +1,522 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LCI-Horarios</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="preload" as="image" href="./images/hero-banner-7-desktop.jpg" />
+
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <!--  Leaflet -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      defer
+    ></script>
+
+    <!--  Flatpickr -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/es.js"></script>
+
+    <!-- JS propios -->
+    <script src="./js/modal-sala-map.js" defer></script>
+    <script src="./js/modal-fecha-calendar.js" defer></script>
+    <script src="./js/favorite.js" defer></script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400..700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Icons -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+    />
+  </head>
+
+  <body>
+    <!-- =============================================================== -->
+    <!-- Navbar -->
+    <!-- =============================================================== -->
+
+    <nav class="navbar">
+      <div class="navbar-container">
+        <button class="hamburguer-menu" aria-label="Abrir menú">
+          <span class="material-symbols-outlined icon-open">menu</span>
+        </button>
+
+        <a href="index.html" aria-label="Ir a cartelera">
+          <img
+            src="./assets/icons/logo.svg"
+            alt="Cartelera"
+            class="navbar-logo"
+            loading="lazy"
+          />
+        </a>
+
+        <ul class="navbar-menu">
+          <button class="sidenav-close" aria-label="Cerrar menú">
+            <span class="material-symbols-outlined">cancel</span>
+          </button>
+
+          <li>
+            <a href="index.html" class="nav-btn-red">
+              <span class="material-symbols-outlined nav-btn-icon">movie</span>
+              <span class="nav-btn-text">Cartelera</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="compras.html" class="nav-btn-orange">
+              <span class="material-symbols-outlined nav-btn-icon"
+                >confirmation_number</span
+              >
+              <span class="nav-btn-text">Compras</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="watchlist.html" class="nav-btn-green">
+              <span class="material-symbols-outlined nav-btn-icon"
+                >favorite</span
+              >
+              <span class="nav-btn-text">Watchlist</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="eventos.html" class="nav-btn-blue">
+              <span class="material-symbols-outlined nav-btn-icon">event</span>
+              <span class="nav-btn-text">Eventos</span>
+            </a>
+          </li>
+        </ul>
+
+        <a href="watchlist.html" class="nav-icon icon-link" aria-label="Cuenta">
+          <span class="material-symbols-outlined">account_circle</span>
+        </a>
+      </div>
+    </nav>
+
+    <!-- =============================================================== -->
+    <!-- Main -->
+    <!-- =============================================================== -->
+
+    <main class="main-content">
+      <!-- =============================================================== -->
+      <!-- Modal -->
+      <!-- =============================================================== -->
+
+      <div class="modales">
+        <div class="sala-cine">
+          <p class="label-modal">Sala cine</p>
+
+          <button
+            type="button"
+            class="modal-sala-cine"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+          >
+            <span class="modal-text">Seleccionar sala de cine</span>
+
+            <span class="chip-selected hidden" id="chipSala">
+              <span class="chip-text"></span>
+              <span class="material-symbols-outlined">check</span>
+            </span>
+          </button>
+        </div>
+
+        <div class="sala-fecha">
+          <p class="label-modal">Fecha</p>
+          <button
+            class="modal-fecha"
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#modalFecha"
+          >
+            <span class="modal-text">Seleccionar fecha</span>
+            <span class="material-symbols-outlined">calendar_today</span>
+          </button>
+        </div>
+      </div>
+
+      <div
+        class="modal fade"
+        id="exampleModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">
+                Selecciona una sala de cine
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+
+            <div class="modal-body">
+              <div id="mapa-salas" style="height: 320px; width: 100%"></div>
+
+              <select class="form-select mt-3" id="selectSala">
+                <option value="Michoacán Morelia">Michoacán, Morelia</option>
+                <option value="CDMX Sala Roma">CDMX, Sala Roma</option>
+                <option value="CDMX Sala Coyoacán">CDMX, Sala Coyoacán</option>
+                <option value="CDMX Sala Polanco">CDMX, Sala Polanco</option>
+                <option value="Guanajuato San Miguel de Allende">
+                  Guanajuato, San Miguel de Allende
+                </option>
+                <option value="Guanajuato Guanajuato">
+                  Guanajuato, Guanajuato
+                </option>
+                <option value="Nuevo León Monterrey">
+                  Nuevo León, Monterrey
+                </option>
+                <option value="Nuevo León SPGG">Nuevo León, SPGG</option>
+                <option value="Playa del Carmen Riviera Maya">
+                  Playa del Carmen, Riviera Maya
+                </option>
+              </select>
+            </div>
+
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Cerrar
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary"
+                id="btnConfirmarSala"
+              >
+                Confirmar selección
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="modal fade"
+        id="modalFecha"
+        tabindex="-1"
+        aria-labelledby="modalFechaLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="modalFechaLabel">
+                Selecciona una fecha
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+
+            <div class="modal-body">
+              <div id="calendarFecha"></div>
+            </div>
+
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Cerrar
+              </button>
+
+              <button
+                type="button"
+                class="btn btn-primary"
+                id="btnConfirmarFecha"
+              >
+                Confirmar fecha
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- =============================================================== -->
+      <!-- Botones -->
+      <!-- =============================================================== -->
+
+      <div class="botones">
+        <a href="sinopsis.html" class="back" aria-label="Volver a sinopsis">
+          <span class="material-symbols-outlined"> arrow_left_alt </span>
+        </a>
+      </div>
+
+      <!-- =============================================================== -->
+      <!-- Carousel -->
+      <!-- =============================================================== -->
+
+      <div id="carouselExampleCaptions" class="carousel slide">
+        <div class="carousel-indicators">
+          <button
+            type="button"
+            data-bs-target="#carouselExampleCaptions"
+            data-bs-slide-to="0"
+            class="active"
+            aria-current="true"
+            aria-label="Slide 1"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleCaptions"
+            data-bs-slide-to="1"
+            aria-label="Slide 2"
+          ></button>
+        </div>
+
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img
+              src="./images/hero-banner-7-desktop.jpg"
+              class="d-block w-100"
+              alt="Cineteca de Michoacán Morelia"
+              loading="lazy"
+            />
+            <div class="banner-caption">
+              <h1 class="heading-1">Cineteca de Morelia</h1>
+              <p class="body-1">
+                Letterbox x FICM: El cine de autor más cerca de ti
+              </p>
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <img
+              src="./images/hero-banner-8-desktop.jpg"
+              class="d-block w-100"
+              alt="Cineteca de Michoacán Morelia"
+              loading="lazy"
+            />
+            <div class="banner-caption">
+              <h1 class="heading-1">Cineteca de Morelia</h1>
+              <p class="body-1">
+                Letterbox x FICM: El cine de autor más cerca de ti
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselExampleCaptions"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselExampleCaptions"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+
+      <!-- =============================================================== -->
+      <!-- Horarios -->
+      <!-- =============================================================== -->
+
+      <section class="horarios-proyeccion">
+        <!-- ================= Película 1 ================= -->
+        <h2 class="heading-2">Y tu mamá también</h2>
+
+        <h3 class="subheader-2">Subtitulada</h3>
+        <div class="horarios-grid">
+          <a href="asientos.html" class="horario-item">
+            <span class="material-symbols-outlined">local_activity</span>
+            <span class="horario-text">9:30 AM</span>
+          </a>
+
+          <a href="asientos.html" class="horario-item">
+            <span class="material-symbols-outlined">local_activity</span>
+            <span class="horario-text">10:30 AM</span>
+          </a>
+
+          <a href="asientos.html" class="horario-item">
+            <span class="material-symbols-outlined">local_activity</span>
+            <span class="horario-text">2:30 PM</span>
+          </a>
+
+          <a href="asientos.html" class="horario-item">
+            <span class="material-symbols-outlined">local_activity</span>
+            <span class="horario-text">3:30 PM</span>
+          </a>
+
+          <a href="asientos.html" class="horario-item">
+            <span class="material-symbols-outlined">local_activity</span>
+            <span class="horario-text">4:30 PM</span>
+          </a>
+
+          <a href="asientos.html" class="horario-item">
+            <span class="material-symbols-outlined">local_activity</span>
+            <span class="horario-text">5:30 PM</span>
+          </a>
+
+          <a href="asientos.html" class="horario-item horario-especial">
+            <span class="material-symbols-outlined">local_activity</span>
+            <span class="horario-text">6:30 PM</span>
+            <span class="horario-text">Proyección Aniversario 25to</span>
+          </a>
+        </div>
+
+        <hr class="divider" />
+
+        <h3 class="subheader-2">Español</h3>
+        <div class="horarios-grid">
+          <a href="asientos.html" class="horario-item">
+            <span class="material-symbols-outlined">confirmation_number</span>
+            <span class="horario-text">8:30 AM</span>
+          </a>
+
+          <a href="asientos.html" class="horario-item">
+            <span class="material-symbols-outlined">confirmation_number</span>
+            <span class="horario-text">11:30 AM</span>
+          </a>
+
+          <a href="asientos.html" class="horario-item">
+            <span class="material-symbols-outlined">confirmation_number</span>
+            <span class="horario-text">1:30 PM</span>
+          </a>
+
+          <a href="asientos.html" class="horario-item">
+            <span class="material-symbols-outlined">confirmation_number</span>
+            <span class="horario-text">4:30 PM</span>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <!-- =============================================================== -->
+    <!-- Footer -->
+    <!-- =============================================================== -->
+
+    <footer class="main-footer">
+      <ul class="list">
+        <li><a href="index.html">Cartelera</a></li>
+        <li><a href="compras.html">Compras</a></li>
+        <li><a href="watchlist.html">Watchlist</a></li>
+        <li><a href="eventos.html">Eventos</a></li>
+      </ul>
+
+      <div class="redes-sociales">
+        <a
+          href="https://www.instagram.com/letterboxd/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Letterboxd en Instagram"
+        >
+          <img
+            src="./assets/icons/icon-insta.svg"
+            alt="Instagram"
+            class="social-icon"
+          />
+        </a>
+
+        <a
+          href="https://www.threads.net/@letterboxd"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Letterboxd en Threads"
+        >
+          <img
+            src="./assets/icons/icon-threads.svg"
+            alt="Threads"
+            class="social-icon"
+          />
+        </a>
+
+        <a
+          href="https://www.tiktok.com/@letterboxd"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Letterboxd en TikTok"
+        >
+          <img
+            src="./assets/icons/icon-threads.svg"
+            alt="TikTok"
+            class="social-icon"
+          />
+        </a>
+
+        <a
+          href="https://discord.com/invite/letterboxd"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Comunidad Letterboxd en Discord"
+        >
+          <img
+            src="./assets/icons/icon-discord.svg"
+            alt="Discord"
+            class="social-icon"
+          />
+        </a>
+      </div>
+
+      <div class="logos">
+        <img
+          src="./assets/icons/logo.svg"
+          alt="Letterboxd Circuito Independiente"
+          class="lci-logo"
+        />
+        <img
+          src="./assets/icons/letterboxd-logo-v-neg-rgb.svg"
+          alt="Letterboxd"
+          class="letterboxd-logo"
+        />
+      </div>
+
+      <p class="copyright">Letterboxd Circuito Independiente ⓒ 2026</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,776 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LCI-Asientos</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="preload" as="image" href="./images/hero-banner-7-desktop.jpg" />
+
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- JS propios -->
+    <script src="./js/hamburguer-menu.js" defer></script>
+    <script src="./js/asientos.js" defer></script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400..700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Icons -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+    />
+  </head>
+
+  <body>
+    <!-- =============================================================== -->
+    <!-- Navbar -->
+    <!-- =============================================================== -->
+
+    <nav class="navbar">
+      <div class="navbar-container">
+        <button class="hamburguer-menu" aria-label="Abrir menú">
+          <span class="material-symbols-outlined icon-open">menu</span>
+        </button>
+
+        <a href="index.html" aria-label="Ir a cartelera">
+          <img
+            src="./assets/icons/logo.svg"
+            alt="Cartelera"
+            class="navbar-logo"
+            loading="lazy"
+          />
+        </a>
+
+        <ul class="navbar-menu">
+          <button class="sidenav-close" aria-label="Cerrar menú">
+            <span class="material-symbols-outlined">cancel</span>
+          </button>
+
+          <li>
+            <a href="index.html" class="nav-btn-red">
+              <span class="material-symbols-outlined nav-btn-icon">movie</span>
+              <span class="nav-btn-text">Cartelera</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="compras.html" class="nav-btn-orange">
+              <span class="material-symbols-outlined nav-btn-icon"
+                >confirmation_number</span
+              >
+              <span class="nav-btn-text">Compras</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="watchlist.html" class="nav-btn-green">
+              <span class="material-symbols-outlined nav-btn-icon"
+                >favorite</span
+              >
+              <span class="nav-btn-text">Watchlist</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="eventos.html" class="nav-btn-blue">
+              <span class="material-symbols-outlined nav-btn-icon">event</span>
+              <span class="nav-btn-text">Eventos</span>
+            </a>
+          </li>
+        </ul>
+
+        <a href="watchlist.html" class="nav-icon icon-link" aria-label="Cuenta">
+          <span class="material-symbols-outlined">account_circle</span>
+        </a>
+      </div>
+    </nav>
+
+    <!-- =============================================================== -->
+    <!-- Main -->
+    <!-- =============================================================== -->
+
+    <main class="main-content">
+      <!-- =============================================================== -->
+      <!-- Botones -->
+      <!-- =============================================================== -->
+
+      <div class="botones">
+        <a href="horarios.html" class="back" aria-label="Volver a horarios">
+          <span class="material-symbols-outlined"> arrow_left_alt </span>
+        </a>
+      </div>
+
+      <!-- =============================================================== -->
+      <!-- Resumen -->
+      <!-- =============================================================== -->
+
+      <div class="resumen">
+        <h2 class="heading-2">Selecciona asientos disponibles</h2>
+
+        <h3 class="subheader-2">Y tu mamá también</h3>
+
+        <div class="pills">
+          <p>1h 46min</p>
+          <button class="pill-genero">Drama</button>
+          <button class="pill-genero">Romance</button>
+        </div>
+
+        <a
+          href="https://www.google.com/maps/search/CINE+MORELIA/@19.6943224,-101.2007597,15z/data=!3m1!4b1?entry=ttu&g_ep=EgoyMDI2MDIwNC4wIKXMDSoASAFQAw%3D%3D"
+          target="_blank"
+          rel="noopener"
+          class="link-ubicacion"
+        >
+          Cine ubicacion
+          <span class="material-symbols-outlined"> arrow_outward </span>
+        </a>
+
+        <div class="horarios-grid">
+          <a href="asientos.html" class="horario-item">
+            <span class="material-symbols-outlined">confirmation_number</span>
+            <span class="horario-text">8:30 AM</span>
+          </a>
+
+          <a href="asientos.html"> </a>
+
+          <a href="asientos.html"> </a>
+
+          <a href="asientos.html"> </a>
+        </div>
+      </div>
+
+      <!-- =============================================================== -->
+      <!-- Mapa asientos -->
+      <!-- =============================================================== -->
+
+      <section class="seatmap-section">
+        <div class="seatmap-wrapper">
+          <svg
+            class="seatmap"
+            viewBox="0 0 520 480"
+            aria-label="Mapa de asientos de cine"
+          >
+            <!-- Pantalla -->
+            <text x="260" y="30" text-anchor="middle" class="screen-label">
+              Pantalla
+            </text>
+
+            <!-- ================= FILA A ================= -->
+            <g class="seat-row" data-row="A" transform="translate(40,60)">
+              <text x="-20" y="28" class="row-label">A</text>
+
+              <g
+                class="seat available"
+                data-seat="A1"
+                transform="translate(0,0)"
+              >
+                <rect width="40" height="40" rx="6" />
+                <text class="seat-icon">account_box</text>
+              </g>
+              <g
+                class="seat available"
+                data-seat="A2"
+                transform="translate(52,0)"
+              >
+                <rect width="40" height="40" rx="6" />
+                <text class="seat-icon">account_box</text>
+              </g>
+              <g
+                class="seat occupied"
+                data-seat="A3"
+                transform="translate(104,0)"
+              >
+                <rect width="40" height="40" rx="6" />
+                <text class="seat-icon">account_box</text>
+              </g>
+              <g
+                class="seat available"
+                data-seat="A4"
+                transform="translate(156,0)"
+              >
+                <rect width="40" height="40" rx="6" />
+                <text class="seat-icon">account_box</text>
+              </g>
+              <g
+                class="seat available"
+                data-seat="A5"
+                transform="translate(208,0)"
+              >
+                <rect width="40" height="40" rx="6" />
+                <text class="seat-icon">account_box</text>
+              </g>
+              <g
+                class="seat available"
+                data-seat="A6"
+                transform="translate(260,0)"
+              >
+                <rect width="40" height="40" rx="6" />
+                <text class="seat-icon">account_box</text>
+              </g>
+              <g
+                class="seat available"
+                data-seat="A7"
+                transform="translate(312,0)"
+              >
+                <rect width="40" height="40" rx="6" />
+                <text class="seat-icon">account_box</text>
+              </g>
+              <g
+                class="seat available"
+                data-seat="A8"
+                transform="translate(364,0)"
+              >
+                <rect width="40" height="40" rx="6" />
+                <text class="seat-icon">account_box</text>
+              </g>
+            </g>
+
+            <!-- ================= FILA B ================= -->
+            <g class="seat-row" data-row="B" transform="translate(40,112)">
+              <text x="-20" y="28" class="row-label">B</text>
+
+              <g
+                class="seat available"
+                data-seat="B1"
+                transform="translate(0,0)"
+              >
+                <rect width="40" height="40" rx="6" />
+                <text class="seat-icon">account_box</text>
+              </g>
+              <g
+                class="seat available"
+                data-seat="B2"
+                transform="translate(52,0)"
+              >
+                <rect width="40" height="40" rx="6" />
+                <text class="seat-icon">account_box</text>
+              </g>
+              <g
+                class="seat available"
+                data-seat="B3"
+                transform="translate(104,0)"
+              >
+                <rect width="40" height="40" rx="6" />
+                <text class="seat-icon">account_box</text>
+              </g>
+              <g
+                class="seat available"
+                data-seat="B4"
+                transform="translate(156,0)"
+              >
+                <rect width="40" height="40" rx="6" />
+                <text class="seat-icon">account_box</text>
+              </g>
+              <g
+                class="seat occupied"
+                data-seat="B5"
+                transform="translate(208,0)"
+              >
+                <rect width="40" height="40" rx="6" />
+                <text class="seat-icon">account_box</text>
+              </g>
+              <g
+                class="seat available"
+                data-seat="B6"
+                transform="translate(260,0)"
+              >
+                <rect width="40" height="40" rx="6" />
+                <text class="seat-icon">account_box</text>
+              </g>
+              <g
+                class="seat available"
+                data-seat="B7"
+                transform="translate(312,0)"
+              >
+                <rect width="40" height="40" rx="6" />
+                <text class="seat-icon">account_box</text>
+              </g>
+              <g
+                class="seat available"
+                data-seat="B8"
+                transform="translate(364,0)"
+              >
+                <rect width="40" height="40" rx="6" />
+                <text class="seat-icon">account_box</text>
+              </g>
+            </g>
+
+            <!-- ================= FILA C (ACCESIBLES) ================= -->
+            <g class="seat-row" data-row="C" transform="translate(40,164)">
+              <text x="-20" y="28" class="row-label">C</text>
+
+              <g
+                class="seat accessible"
+                data-seat="C1"
+                transform="translate(0,0)"
+              >
+                <rect width="40" height="40" rx="6" />
+                <text class="seat-icon">accessible</text>
+              </g>
+              <g
+                class="seat accessible"
+                data-seat="C2"
+                transform="translate(52,0)"
+              >
+                <rect width="40" height="40" rx="6" />
+                <text class="seat-icon">accessible</text>
+              </g>
+              <g
+                class="seat available"
+                data-seat="C3"
+                transform="translate(104,0)"
+              >
+                <rect width="40" height="40" rx="6" />
+                <text class="seat-icon">account_box</text>
+              </g>
+              <g
+                class="seat available"
+                data-seat="C4"
+                transform="translate(156,0)"
+              >
+                <rect width="40" height="40" rx="6" />
+                <text class="seat-icon">account_box</text>
+              </g>
+              <g
+                class="seat available"
+                data-seat="C5"
+                transform="translate(208,0)"
+              >
+                <rect width="40" height="40" rx="6" />
+                <text class="seat-icon">account_box</text>
+              </g>
+              <g
+                class="seat available"
+                data-seat="C6"
+                transform="translate(260,0)"
+              >
+                <rect width="40" height="40" rx="6" />
+                <text class="seat-icon">account_box</text>
+              </g>
+              <g
+                class="seat available"
+                data-seat="C7"
+                transform="translate(312,0)"
+              >
+                <rect width="40" height="40" rx="6" />
+                <text class="seat-icon">account_box</text>
+              </g>
+              <g
+                class="seat available"
+                data-seat="C8"
+                transform="translate(364,0)"
+              >
+                <rect width="40" height="40" rx="6" />
+                <text class="seat-icon">account_box</text>
+              </g>
+            </g>
+
+            <!-- ================= FILA D ================= -->
+            <g class="seat-row" data-row="D" transform="translate(40,216)">
+              <text x="-20" y="28" class="row-label">D</text>
+
+              <g
+                class="seat available"
+                data-seat="D1"
+                transform="translate(0,0)"
+              >
+                <rect width="40" height="40" rx="6" />
+                <text class="seat-icon">account_box</text>
+              </g>
+              <g
+                class="seat available"
+                data-seat="D2"
+                transform="translate(52,0)"
+              >
+                <rect width="40" height="40" rx="6" />
+                <text class="seat-icon">account_box</text>
+              </g>
+              <g
+                class="seat available"
+                data-seat="D3"
+                transform="translate(104,0)"
+              >
+                <rect width="40" height="40" rx="6" />
+                <text class="seat-icon">account_box</text>
+              </g>
+              <g
+                class="seat available"
+                data-seat="D4"
+                transform="translate(156,0)"
+              >
+                <rect width="40" height="40" rx="6" />
+                <text class="seat-icon">account_box</text>
+              </g>
+              <g
+                class="seat available"
+                data-seat="D5"
+                transform="translate(208,0)"
+              >
+                <rect width="40" height="40" rx="6" />
+                <text class="seat-icon">account_box</text>
+              </g>
+              <g
+                class="seat available"
+                data-seat="D6"
+                transform="translate(260,0)"
+              >
+                <rect width="40" height="40" rx="6" />
+                <text class="seat-icon">account_box</text>
+              </g>
+              <g
+                class="seat available"
+                data-seat="D7"
+                transform="translate(312,0)"
+              >
+                <rect width="40" height="40" rx="6" />
+                <text class="seat-icon">account_box</text>
+              </g>
+              <g
+                class="seat available"
+                data-seat="D8"
+                transform="translate(364,0)"
+              >
+                <rect width="40" height="40" rx="6" />
+                <text class="seat-icon">account_box</text>
+              </g>
+            </g>
+
+            <!-- ================= FILA E ================= -->
+            <g class="seat-row" data-row="E" transform="translate(40,268)">
+              <text x="-20" y="28" class="row-label">E</text>
+
+              <g
+                class="seat available"
+                data-seat="E1"
+                transform="translate(0,0)"
+              >
+                <rect width="40" height="40" rx="6" />
+                <text class="seat-icon">account_box</text>
+              </g>
+              <g
+                class="seat available"
+                data-seat="E2"
+                transform="translate(52,0)"
+              >
+                <rect width="40" height="40" rx="6" />
+                <text class="seat-icon">account_box</text>
+              </g>
+              <g
+                class="seat available"
+                data-seat="E3"
+                transform="translate(104,0)"
+              >
+                <rect width="40" height="40" rx="6" />
+                <text class="seat-icon">account_box</text>
+              </g>
+              <g
+                class="seat available"
+                data-seat="E4"
+                transform="translate(156,0)"
+              >
+                <rect width="40" height="40" rx="6" />
+                <text class="seat-icon">account_box</text>
+              </g>
+              <g
+                class="seat available"
+                data-seat="E5"
+                transform="translate(208,0)"
+              >
+                <rect width="40" height="40" rx="6" />
+                <text class="seat-icon">account_box</text>
+              </g>
+              <g
+                class="seat available"
+                data-seat="E6"
+                transform="translate(260,0)"
+              >
+                <rect width="40" height="40" rx="6" />
+                <text class="seat-icon">account_box</text>
+              </g>
+              <g
+                class="seat available"
+                data-seat="E7"
+                transform="translate(312,0)"
+              >
+                <rect width="40" height="40" rx="6" />
+                <text class="seat-icon">account_box</text>
+              </g>
+              <g
+                class="seat available"
+                data-seat="E8"
+                transform="translate(364,0)"
+              >
+                <rect width="40" height="40" rx="6" />
+                <text class="seat-icon">account_box</text>
+              </g>
+            </g>
+
+            <!-- ================= FILA F ================= -->
+            <g class="seat-row" data-row="F" transform="translate(40,320)">
+              <text x="-20" y="28" class="row-label">F</text>
+
+              <g
+                class="seat available"
+                data-seat="F1"
+                transform="translate(0,0)"
+              >
+                <rect width="40" height="40" rx="6" />
+                <text class="seat-icon">account_box</text>
+              </g>
+              <g
+                class="seat available"
+                data-seat="F2"
+                transform="translate(52,0)"
+              >
+                <rect width="40" height="40" rx="6" />
+                <text class="seat-icon">account_box</text>
+              </g>
+              <g
+                class="seat available"
+                data-seat="F3"
+                transform="translate(104,0)"
+              >
+                <rect width="40" height="40" rx="6" />
+                <text class="seat-icon">account_box</text>
+              </g>
+              <g
+                class="seat available"
+                data-seat="F4"
+                transform="translate(156,0)"
+              >
+                <rect width="40" height="40" rx="6" />
+                <text class="seat-icon">account_box</text>
+              </g>
+              <g
+                class="seat available"
+                data-seat="F5"
+                transform="translate(208,0)"
+              >
+                <rect width="40" height="40" rx="6" />
+                <text class="seat-icon">account_box</text>
+              </g>
+              <g
+                class="seat available"
+                data-seat="F6"
+                transform="translate(260,0)"
+              >
+                <rect width="40" height="40" rx="6" />
+                <text class="seat-icon">account_box</text>
+              </g>
+              <g
+                class="seat available"
+                data-seat="F7"
+                transform="translate(312,0)"
+              >
+                <rect width="40" height="40" rx="6" />
+                <text class="seat-icon">account_box</text>
+              </g>
+              <g
+                class="seat available"
+                data-seat="F8"
+                transform="translate(364,0)"
+              >
+                <rect width="40" height="40" rx="6" />
+                <text class="seat-icon">account_box</text>
+              </g>
+            </g>
+
+            <!-- ================= FILA G ================= -->
+            <g class="seat-row" data-row="G" transform="translate(40,372)">
+              <text x="-20" y="28" class="row-label">G</text>
+
+              <g
+                class="seat available"
+                data-seat="G1"
+                transform="translate(0,0)"
+              >
+                <rect width="40" height="40" rx="6" />
+                <text class="seat-icon">account_box</text>
+              </g>
+              <g
+                class="seat available"
+                data-seat="G2"
+                transform="translate(52,0)"
+              >
+                <rect width="40" height="40" rx="6" />
+                <text class="seat-icon">account_box</text>
+              </g>
+              <g
+                class="seat available"
+                data-seat="G3"
+                transform="translate(104,0)"
+              >
+                <rect width="40" height="40" rx="6" />
+                <text class="seat-icon">account_box</text>
+              </g>
+              <g
+                class="seat available"
+                data-seat="G4"
+                transform="translate(156,0)"
+              >
+                <rect width="40" height="40" rx="6" />
+                <text class="seat-icon">account_box</text>
+              </g>
+              <g
+                class="seat available"
+                data-seat="G5"
+                transform="translate(208,0)"
+              >
+                <rect width="40" height="40" rx="6" />
+                <text class="seat-icon">account_box</text>
+              </g>
+              <g
+                class="seat available"
+                data-seat="G6"
+                transform="translate(260,0)"
+              >
+                <rect width="40" height="40" rx="6" />
+                <text class="seat-icon">account_box</text>
+              </g>
+              <g
+                class="seat available"
+                data-seat="G7"
+                transform="translate(312,0)"
+              >
+                <rect width="40" height="40" rx="6" />
+                <text class="seat-icon">account_box</text>
+              </g>
+              <g
+                class="seat available"
+                data-seat="G8"
+                transform="translate(364,0)"
+              >
+                <rect width="40" height="40" rx="6" />
+                <text class="seat-icon">account_box</text>
+              </g>
+            </g>
+          </svg>
+        </div>
+      </section>
+
+      <!-- =============================================================== -->
+      <!-- Confirmacion -->
+      <!-- =============================================================== -->
+
+      <div class="proceder-pago">
+        <p>Asientos seleccionados:</p>
+
+        <h3 class="subheader-2" id="selectedSeatsText">
+          Ningún asiento seleccionado
+        </h3>
+
+        <ul class="sinopsis-actions">
+          <li>
+            <a href="reserva.html" class="nav-btn-green">
+              <span class="nav-btn-text" id="continueText"> Continuar </span>
+              <span class="material-symbols-outlined"> arrow_right_alt </span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </main>
+
+    <!-- =============================================================== -->
+    <!-- Footer -->
+    <!-- =============================================================== -->
+
+    <footer class="main-footer">
+      <ul class="list">
+        <li><a href="index.html">Cartelera</a></li>
+        <li><a href="compras.html">Compras</a></li>
+        <li><a href="watchlist.html">Watchlist</a></li>
+        <li><a href="eventos.html">Eventos</a></li>
+      </ul>
+
+      <div class="redes-sociales">
+        <a
+          href="https://www.instagram.com/letterboxd/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Letterboxd en Instagram"
+        >
+          <img
+            src="./assets/icons/icon-insta.svg"
+            alt="Instagram"
+            class="social-icon"
+          />
+        </a>
+
+        <a
+          href="https://www.threads.net/@letterboxd"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Letterboxd en Threads"
+        >
+          <img
+            src="./assets/icons/icon-threads.svg"
+            alt="Threads"
+            class="social-icon"
+          />
+        </a>
+
+        <a
+          href="https://www.tiktok.com/@letterboxd"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Letterboxd en TikTok"
+        >
+          <img
+            src="./assets/icons/icon-tiktok.svg"
+            alt="TikTok"
+            class="social-icon"
+          />
+        </a>
+
+        <a
+          href="https://discord.com/invite/letterboxd"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Comunidad Letterboxd en Discord"
+        >
+          <img
+            src="./assets/icons/icon-discord.svg"
+            alt="Discord"
+            class="social-icon"
+          />
+        </a>
+      </div>
+
+      <div class="logos">
+        <img
+          src="./assets/icons/logo.svg"
+          alt="Letterboxd Circuito Independiente"
+          class="lci-logo"
+        />
+        <img
+          src="./assets/icons/letterboxd-logo-v-neg-rgb.svg"
+          alt="Letterboxd"
+          class="letterboxd-logo"
+        />
+      </div>
+
+      <p class="copyright">Letterboxd Circuito Independiente ⓒ 2026</p>
+    </footer>
+  </body>
+</html>

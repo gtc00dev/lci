@@ -1,0 +1,229 @@
+@use "sass:map";
+@use "./variables" as vars;
+
+/* ======================== Estilos de texto ============================ */
+/* En mobile, algunos niveles tipográficos comparten tamaño para mejorar 
+legibilidad y reducir complejidad visual. La jerarquía completa se despliega progresivamente */
+
+/* Variable */
+@mixin text-style($style) {
+  font-family: map.get($style, font-family);
+  font-size: map.get($style, font-size);
+  font-weight: map.get($style, font-weight);
+  line-height: map.get($style, line-height);
+}
+
+/* Responsive */
+@mixin fluid-type(
+  $mobile,
+  $desktop,
+  $min-vw: 360px,
+  $max-vw: 1440px
+) {
+  font-family: map.get($mobile, font-family);
+  font-weight: map.get($mobile, font-weight);
+  line-height: map.get($mobile, line-height);
+
+  font-size: clamp(
+    map.get($mobile, font-size),
+    calc(
+      map.get($mobile, font-size) +
+      (map.get($desktop, font-size) - map.get($mobile, font-size)) *
+      ((100vw - $min-vw) / ($max-vw - $min-vw))
+    ),
+    map.get($desktop, font-size)
+  );
+}
+
+/* Header */
+@mixin h1-fluid {
+  @include fluid-type(vars.$h1-mobile, vars.$h1-desktop);
+}
+
+@mixin h2-fluid {
+  @include fluid-type(vars.$h2-mobile, vars.$h2-desktop);
+}
+
+@mixin h3-fluid {
+  @include fluid-type(vars.$h2-mobile, vars.$h3-desktop);
+}
+
+@mixin subh1-fluid {
+  @include fluid-type(vars.$subh1-mobile, vars.$subh1-desktop);
+}
+
+@mixin subh2-fluid {
+  @include fluid-type(vars.$subh2-mobile, vars.$subh2-desktop);
+}
+
+/* CTA */
+@mixin cta-1-fluid {
+  @include fluid-type(vars.$cta-1-mobile, vars.$cta-1-desktop);
+}
+
+@mixin cta-2-fluid {
+  @include fluid-type(vars.$cta-2-mobile, vars.$cta-2-desktop);
+}
+
+/* Body text */
+@mixin body-1-fluid {
+  @include fluid-type(vars.$body-1-mobile, vars.$body-1-desktop);
+}
+
+@mixin body-2-fluid {
+  @include fluid-type(vars.$body-2-mobile, vars.$body-2-desktop);
+}
+
+@mixin body-3-fluid {
+  @include fluid-type(vars.$body-3-mobile, vars.$body-3-desktop);
+}
+
+@mixin body-4-fluid {
+  @include fluid-type(vars.$body-3-mobile, vars.$body-4-desktop);
+}
+
+/* ======================== Imagenes ============================ */
+/* Generos */
+@mixin image-size($width, $height: $width) {
+  width: $width;
+  height: $height;
+  object-fit: cover;
+  display: block;
+}
+
+/* ======================== Hovers ============================ */
+/* Nav button */
+@mixin nav-button($hover-color) {
+  padding: 14px 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  cursor: pointer;
+
+  color: vars.$color-white;
+  background: transparent;
+  border-radius: vars.$radius-medium;
+
+  transition:
+    background-color 220ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 180ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  .nav-btn-text {
+    display: flex;
+    align-items: center;
+    line-height: 1;
+  }
+
+  &:hover {
+    background-color: $hover-color;
+
+    .nav-btn-text,
+    .nav-btn-icon {
+      color: vars.$color-dark;
+    }
+  }
+
+  &:active {
+    background-color: vars.$color-dark;
+
+    .nav-btn-text,
+    .nav-btn-icon {
+      color: vars.$color-white;
+    }
+  }
+}
+
+.nav-btn-red {
+  @include nav-button(vars.$color-red);
+}
+
+.nav-btn-orange {
+  @include nav-button(vars.$color-orange);
+}
+
+.nav-btn-green {
+  @include nav-button(vars.$color-green);
+}
+
+.nav-btn-blue {
+  @include nav-button(vars.$color-blue);
+}
+
+/* ======================== Cards ============================ */
+/* card-estreno */
+@mixin elevated-card(
+  $bg: vars.$color-gray-dark,
+  $radius: vars.$radius-small,
+  $lift: -6px,
+  $shadow: 0 18px 48px rgba(0, 0, 0, 0.45)
+) {
+  display: flex;
+  background-color: $bg;
+  border-radius: $radius;
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      transparent,
+      rgba(0, 0, 0, 0.15)
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+
+  &:hover {
+    transform: translateY($lift);
+    box-shadow: $shadow;
+
+    &::after {
+      opacity: 1;
+    }
+  }
+}
+
+/* card-event */
+@mixin elevated-card-event(
+  $bg: vars.$color-gray-dark,
+  $radius: vars.$radius-small,
+  $lift: -4px,
+  $shadow: 0 16px 40px rgba(0, 0, 0, 0.35)
+) {
+  display: flex;
+  flex-direction: column;
+  background-color: $bg;
+  border-radius: $radius;
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      transparent,
+      rgba(0, 0, 0, 0.18)
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+
+  &:hover {
+    transform: translateY($lift);
+    box-shadow: $shadow;
+
+    &::after {
+      opacity: 1;
+    }
+  }
+}

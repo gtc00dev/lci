@@ -1,0 +1,43 @@
+@use "variables" as vars;
+@use "sass:color";
+
+@function gradient-main() {
+    @return linear-gradient(180deg,
+        vars.$color-dark 0%,
+        color.mix(vars.$color-dark, vars.$color-blue, 70%) 30%,
+        vars.$color-blue 100%);
+}
+
+@function gradient-overlay() {
+    @return linear-gradient(to top,
+        rgba(vars.$color-blue, 0.7),
+        rgba(vars.$color-gray-dark, 0.1));
+}
+
+@function shadow($type) {
+
+    @if $type ==heavy {
+        @return 0 8px 24px rgba(0, 0, 0, 0.4);
+    }
+
+    @if $type ==medium {
+        @return 0 8px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    @if $type ==light {
+        @return 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    @if $type ==soft {
+        @return 0 12px 32px rgba(0, 0, 0, 0.12);
+    }
+
+    @if $type ==focus-blue {
+        @return 0 0 0 2px vars.$color-blue;
+    }
+
+    @if $type ==focus-green {
+        @return 0 0 0 2px rgba(vars.$color-green, 0.25);
+    }
+
+}

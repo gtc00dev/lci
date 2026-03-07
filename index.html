@@ -1,0 +1,1219 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LCI-Index</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/styles.css" />
+
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <!--  Leaflet -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      defer
+    ></script>
+
+    <!--  Flatpickr -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/es.js"></script>
+
+    <!-- JS propios -->
+    <script src="./js/hamburguer-menu.js" defer></script>
+    <script src="./js/generos-filtros.js" defer></script>
+    <script src="./js/modal-sala-map.js" defer></script>
+    <script src="./js/modal-fecha-calendar.js" defer></script>
+    <script src="./js/cartelera-api.js" defer></script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400..700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Icons -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+    />
+  </head>
+
+  <body>
+    <!-- =============================================================== -->
+    <!-- Navbar -->
+    <!-- =============================================================== -->
+
+    <nav class="navbar">
+      <div class="navbar-container">
+        <button class="hamburguer-menu" aria-label="Abrir menú">
+          <span class="material-symbols-outlined icon-open">menu</span>
+        </button>
+
+        <a href="index.html" aria-label="Ir a cartelera">
+          <img
+            src="./assets/icons/logo.svg"
+            alt="Cartelera"
+            class="navbar-logo"
+            loading="lazy"
+          />
+        </a>
+
+        <ul class="navbar-menu">
+          <button class="sidenav-close" aria-label="Cerrar menú">
+            <span class="material-symbols-outlined">cancel</span>
+          </button>
+
+          <li>
+            <a href="index.html" class="nav-btn-red">
+              <span class="material-symbols-outlined nav-btn-icon">movie</span>
+              <span class="nav-btn-text">Cartelera</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="compras.html" class="nav-btn-orange">
+              <span class="material-symbols-outlined nav-btn-icon"
+                >confirmation_number</span
+              >
+              <span class="nav-btn-text">Compras</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="watchlist.html" class="nav-btn-green">
+              <span class="material-symbols-outlined nav-btn-icon"
+                >favorite</span
+              >
+              <span class="nav-btn-text">Watchlist</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="eventos.html" class="nav-btn-blue">
+              <span class="material-symbols-outlined nav-btn-icon">event</span>
+              <span class="nav-btn-text">Eventos</span>
+            </a>
+          </li>
+        </ul>
+
+        <a href="watchlist.html" class="nav-icon icon-link" aria-label="Cuenta">
+          <span class="material-symbols-outlined">account_circle</span>
+        </a>
+      </div>
+    </nav>
+
+    <!-- =============================================================== -->
+    <!-- Main -->
+    <!-- =============================================================== -->
+
+    <main class="main-content">
+      <!-- =============================================================== -->
+      <!-- Modal -->
+      <!-- =============================================================== -->
+
+      <div class="modales">
+        <div class="sala-cine">
+          <p class="label-modal">Sala cine</p>
+
+          <button
+            type="button"
+            class="modal-sala-cine"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+          >
+            <span class="modal-text">Seleccionar sala</span>
+
+            <span class="chip-selected hidden" id="chipSala">
+              <span class="chip-text"></span>
+              <span class="material-symbols-outlined">check</span>
+            </span>
+          </button>
+        </div>
+
+        <div class="sala-fecha">
+          <p class="label-modal">Fecha</p>
+          <button
+            class="modal-fecha"
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#modalFecha"
+          >
+            <span class="modal-text">Seleccionar fecha</span>
+            <span class="material-symbols-outlined">calendar_today</span>
+          </button>
+        </div>
+      </div>
+
+      <div
+        class="modal fade"
+        id="exampleModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">
+                Selecciona una sala de cine
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+
+            <div class="modal-body">
+              <div id="mapa-salas" style="height: 320px; width: 100%"></div>
+
+              <select class="form-select mt-3" id="selectSala">
+                <option value="Michoacán Morelia">Michoacán, Morelia</option>
+                <option value="CDMX Sala Roma">CDMX, Sala Roma</option>
+                <option value="CDMX Sala Coyoacán">CDMX, Sala Coyoacán</option>
+                <option value="CDMX Sala Polanco">CDMX, Sala Polanco</option>
+                <option value="Guanajuato San Miguel de Allende">
+                  Guanajuato, San Miguel de Allende
+                </option>
+                <option value="Guanajuato Guanajuato">
+                  Guanajuato, Guanajuato
+                </option>
+                <option value="Nuevo León Monterrey">
+                  Nuevo León, Monterrey
+                </option>
+                <option value="Nuevo León SPGG">Nuevo León, SPGG</option>
+                <option value="Playa del Carmen Riviera Maya">
+                  Playa del Carmen, Riviera Maya
+                </option>
+              </select>
+            </div>
+
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Cerrar
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary"
+                id="btnConfirmarSala"
+              >
+                Confirmar selección
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="modal fade"
+        id="modalFecha"
+        tabindex="-1"
+        aria-labelledby="modalFechaLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="modalFechaLabel">
+                Selecciona una fecha
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+
+            <div class="modal-body">
+              <div id="calendarFecha"></div>
+            </div>
+
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Cerrar
+              </button>
+
+              <button
+                type="button"
+                class="btn btn-primary"
+                id="btnConfirmarFecha"
+              >
+                Confirmar fecha
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- =============================================================== -->
+      <!-- Carousel -->
+      <!-- =============================================================== -->
+
+      <div id="carouselExampleCaptions" class="carousel slide">
+        <div class="carousel-indicators">
+          <button
+            type="button"
+            data-bs-target="#carouselExampleCaptions"
+            data-bs-slide-to="0"
+            class="active"
+            aria-current="true"
+            aria-label="Slide 1"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleCaptions"
+            data-bs-slide-to="1"
+            aria-label="Slide 2"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleCaptions"
+            data-bs-slide-to="2"
+            aria-label="Slide 3"
+          ></button>
+        </div>
+
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <picture>
+              <source
+                media="(max-width: 360px)"
+                srcset="./images/hero-banner-1-mobile.jpg"
+              />
+              <source
+                media="(min-width: 1400px)"
+                srcset="./images/hero-banner-1-desktop.jpg"
+              />
+              <img
+                src="./images/hero-banner-1-desktop.jpg"
+                class="d-block w-100"
+                alt="Y tu mamá también"
+              />
+            </picture>
+            <div class="carousel-caption d-block">
+              <h1 class="heading-1">Letterboxd Circuito Independiente</h1>
+              <p class="body-1">
+                Letterbox x FICM: El cine de autor más cerca de ti
+              </p>
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <picture>
+              <source
+                media="(max-width: 360px)"
+                srcset="./images/hero-banner-2-mobile.jpg"
+              />
+              <source
+                media="(min-width: 1400px)"
+                srcset="./images/hero-banner-2-desktop.jpg"
+              />
+              <img
+                src="./images/hero-banner-2-desktop.jpg"
+                class="d-block w-100"
+                alt="Y tu mamá también"
+              />
+            </picture>
+            <div class="carousel-caption d-block">
+              <h1 class="heading-1">Aniversario 22do: Güeros</h1>
+              <p class="body-1">Top 250 Narrative Feature Films</p>
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <picture>
+              <source
+                media="(max-width: 360px)"
+                srcset="./images/hero-banner-3-mobile.jpg"
+              />
+              <source
+                media="(min-width: 1400px)"
+                srcset="./images/hero-banner-3-desktop.jpg"
+              />
+              <img
+                src="./images/hero-banner-3-desktop.jpg"
+                class="d-block w-100"
+                alt="Y tu mamá también"
+              />
+            </picture>
+            <div class="carousel-caption d-block">
+              <h1 class="heading-1">Sueño en otro idioma</h1>
+              <p class="body-1">Top 25, 100 mejores películas mexicanas</p>
+            </div>
+          </div>
+        </div>
+
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselExampleCaptions"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselExampleCaptions"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+
+      <!-- =============================================================== -->
+      <!-- Generos -->
+      <!-- =============================================================== -->
+
+      <div class="generos">
+        <h2 class="heading-2">Generos</h2>
+
+        <div class="generos-grid">
+          <div class="card-genero" data-genero="drama">
+            <img src="./images/drama.png" alt="Drama" loading="lazy" />
+            <label class="text-genero">Drama</label>
+          </div>
+
+          <div class="card-genero" data-genero="accion">
+            <img src="./images/accion.png" alt="Acción" loading="lazy" />
+            <label class="text-genero">Acción</label>
+          </div>
+
+          <div class="card-genero" data-genero="terror">
+            <img src="./images/terror.png" alt="Terror" loading="lazy" />
+            <label class="text-genero">Terror</label>
+          </div>
+
+          <div class="card-genero" data-genero="ciencia-ficcion">
+            <img
+              src="./images/ciencia-ficcion.png"
+              alt="Ciencia ficción"
+              loading="lazy"
+            />
+            <label class="text-genero">Ciencia ficción</label>
+          </div>
+
+          <div class="card-genero" data-genero="romance">
+            <img src="./images/romance.png" alt="Romance" loading="lazy" />
+            <label class="text-genero">Romance</label>
+          </div>
+
+          <div class="card-genero" data-genero="comedia">
+            <img src="./images/comedia.png" alt="Comedia" loading="lazy" />
+            <label class="text-genero">Comedia</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- =============================================================== -->
+      <!-- Estrenos -->
+      <!-- =============================================================== -->
+
+      <div class="estrenos">
+        <h2 class="heading-2">Estrenos</h2>
+
+        <!-- Drama -->
+        <div class="estrenos-drama estrenos-seccion">
+          <!-- Card 1 -->
+          <div class="card-estreno" data-api="false">
+            <img
+              class="imagen-estreno"
+              src="./images/poster-pelicula-roma.jpg"
+              alt="Poster Roma"
+              loading="lazy"
+            />
+
+            <div class="card-content">
+              <h5 class="subheader-2">Roma</h5>
+              <p class="card-duracion">2h 15m</p>
+
+              <div class="rating">
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="material-symbols-outlined star-half"
+                  >star_half</span
+                >
+                <span class="rating-text">4.5 / 5</span>
+              </div>
+
+              <button class="tag-genero" type="button">Drama</button>
+
+              <a href="sinopsis.html" class="link-info">
+                <span class="material-symbols-outlined" aria-hidden="true"
+                  >info</span
+                >
+                <span>Ver sinopsis</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div
+            class="card-estreno"
+            data-titulo="Ya no estoy aquí"
+            data-api="runtime"
+          >
+            <div class="imagen-estreno">
+              <img
+                class="img-fluid-estreno"
+                alt="Poster dinámico"
+                loading="lazy"
+              />
+            </div>
+
+            <div class="card-content">
+              <h5 class="subheader-2">Ya no estoy aqui</h5>
+              <p class="card-duracion"></p>
+
+              <div class="rating">
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="rating-text">3 / 5</span>
+              </div>
+
+              <button class="tag-genero" type="button">Drama</button>
+
+              <a href="sinopsis.html" class="link-info">
+                <span class="material-symbols-outlined" aria-hidden="true"
+                  >info</span
+                >
+                <span>Ver sinopsis</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div
+            class="card-estreno"
+            data-titulo="Rojo amanecer"
+            data-api="runtime"
+          >
+            <div class="imagen-estreno">
+              <img
+                class="img-fluid-estreno"
+                alt="Poster dinámico"
+                loading="lazy"
+              />
+            </div>
+
+            <div class="card-content">
+              <h5 class="subheader-2">Rojo amanecer</h5>
+              <p class="card-duracion"></p>
+
+              <div class="rating">
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="rating-text">4 / 5</span>
+              </div>
+
+              <button class="tag-genero" type="button">Drama</button>
+
+              <a href="sinopsis.html" class="link-info">
+                <span class="material-symbols-outlined" aria-hidden="true"
+                  >info</span
+                >
+                <span>Ver sinopsis</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Accion -->
+        <div class="estrenos-accion estrenos-seccion">
+          <!-- Card 1 -->
+          <div
+            class="card-estreno"
+            data-titulo="Amores perros"
+            data-api="runtime"
+          >
+            <div class="imagen-estreno">
+              <img
+                class="img-fluid-estreno"
+                alt="Poster dinámico"
+                loading="lazy"
+              />
+            </div>
+
+            <div class="card-content">
+              <h5 class="subheader-2">Amores perros</h5>
+              <p class="card-duracion"></p>
+
+              <div class="rating">
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="material-symbols-outlined star-half"
+                  >star_half</span
+                >
+                <span class="rating-text">4.5 / 5</span>
+              </div>
+
+              <button class="tag-genero" type="button">Acción</button>
+
+              <a href="sinopsis.html" class="link-info">
+                <span class="material-symbols-outlined" aria-hidden="true"
+                  >info</span
+                >
+                <span>Ver sinopsis</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="card-estreno" data-api="false">
+            <img
+              class="imagen-estreno"
+              src="./images/poster-pelicula-contra-ataque.jpg"
+              alt="Poster Contra ataque"
+              loading="lazy"
+            />
+
+            <div class="card-content">
+              <h5 class="subheader-2">Contra ataque</h5>
+              <p class="card-duracion">1h 44m</p>
+
+              <div class="rating">
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="rating-text">4 / 5</span>
+              </div>
+
+              <button class="tag-genero" type="button">Acción</button>
+
+              <a href="sinopsis.html" class="link-info">
+                <span class="material-symbols-outlined" aria-hidden="true"
+                  >info</span
+                >
+                <span>Ver sinopsis</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="card-estreno" data-api="false">
+            <img
+              class="imagen-estreno"
+              src="./images/poster-pelicula-contra-tiempo.jpg"
+              alt="Poster Contra tiempo"
+              loading="lazy"
+            />
+
+            <div class="card-content">
+              <h5 class="subheader-2">Contra tiempo</h5>
+              <p class="card-duracion">1h 26m</p>
+
+              <div class="rating">
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="material-symbols-outlined star-half"
+                  >star_half</span
+                >
+                <span class="rating-text">3.5 / 5</span>
+              </div>
+
+              <button class="tag-genero" type="button">Acción</button>
+
+              <a href="sinopsis.html" class="link-info">
+                <span class="material-symbols-outlined" aria-hidden="true"
+                  >info</span
+                >
+                <span>Ver sinopsis</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Terror -->
+        <div class="estrenos-terror estrenos-seccion">
+          <!-- Card 1 -->
+          <div
+            class="card-estreno"
+            data-titulo="Hasta el viento tiene miedo"
+            data-api="runtime"
+          >
+            <div class="imagen-estreno">
+              <img
+                class="img-fluid-estreno"
+                alt="Poster dinámico"
+                loading="lazy"
+              />
+            </div>
+
+            <div class="card-content">
+              <h5 class="subheader-2">Hasta el viento tiene miedo</h5>
+              <p class="card-duracion"></p>
+
+              <div class="rating">
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="rating-text">4 / 5</span>
+              </div>
+
+              <button class="tag-genero" type="button">Terror</button>
+
+              <a href="sinopsis.html" class="link-info">
+                <span class="material-symbols-outlined" aria-hidden="true"
+                  >info</span
+                >
+                <span>Ver sinopsis</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div
+            class="card-estreno"
+            data-titulo="Veneno para las hadas"
+            data-api="runtime"
+          >
+            <div class="imagen-estreno">
+              <img
+                class="img-fluid-estreno"
+                alt="Poster dinámico"
+                loading="lazy"
+              />
+            </div>
+
+            <div class="card-content">
+              <h5 class="subheader-2">Veneno para las hadas</h5>
+              <p class="card-duracion"></p>
+
+              <div class="rating">
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="material-symbols-outlined star-half"
+                  >star_half</span
+                >
+                <span class="rating-text">4.5 / 5</span>
+              </div>
+
+              <button class="tag-genero" type="button">Terror</button>
+
+              <a href="sinopsis.html" class="link-info">
+                <span class="material-symbols-outlined" aria-hidden="true"
+                  >info</span
+                >
+                <span>Ver sinopsis</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div
+            class="card-estreno"
+            data-titulo="La región salvaje"
+            data-api="runtime"
+          >
+            <div class="imagen-estreno">
+              <img
+                class="img-fluid-estreno"
+                alt="Poster dinámico"
+                loading="lazy"
+              />
+            </div>
+
+            <div class="card-content">
+              <h5 class="subheader-2">La región salvaje</h5>
+              <p class="card-duracion"></p>
+
+              <div class="rating">
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="rating-text">4 / 5</span>
+              </div>
+
+              <button class="tag-genero" type="button">Terror</button>
+
+              <a href="sinopsis.html" class="link-info">
+                <span class="material-symbols-outlined" aria-hidden="true"
+                  >info</span
+                >
+                <span>Ver sinopsis</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="estrenos-ciencia-ficcion estrenos-seccion">
+          <!-- Card 1 -->
+          <div
+            class="card-estreno"
+            data-titulo="El laberinto del fauno"
+            data-api="runtime"
+          >
+            <div class="imagen-estreno">
+              <img
+                class="img-fluid-estreno"
+                alt="Poster dinámico"
+                loading="lazy"
+              />
+            </div>
+
+            <div class="card-content">
+              <h5 class="subheader-2">El laberinto del fauno</h5>
+              <p class="card-duracion"></p>
+
+              <div class="rating">
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="material-symbols-outlined star-half"
+                  >star_half</span
+                >
+                <span class="rating-text">4.5 / 5</span>
+              </div>
+
+              <button class="tag-genero" type="button">Ciencia ficción</button>
+
+              <a href="sinopsis.html" class="link-info">
+                <span class="material-symbols-outlined" aria-hidden="true"
+                  >info</span
+                >
+                <span>Ver sinopsis</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div
+            class="card-estreno"
+            data-titulo="Camino a marte"
+            data-api="runtime"
+          >
+            <div class="imagen-estreno">
+              <img
+                class="img-fluid-estreno"
+                alt="Poster dinámico"
+                loading="lazy"
+              />
+            </div>
+
+            <div class="card-content">
+              <h5 class="subheader-2">Camino a marte</h5>
+              <p class="card-duracion"></p>
+
+              <div class="rating">
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="material-symbols-outlined star-half"
+                  >star_half</span
+                >
+                <span class="rating-text">3.5 / 5</span>
+              </div>
+
+              <button class="tag-genero" type="button">Ciencia ficción</button>
+
+              <a href="sinopsis.html" class="link-info">
+                <span class="material-symbols-outlined" aria-hidden="true"
+                  >info</span
+                >
+                <span>Ver sinopsis</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="card-estreno" data-titulo="Cronos" data-api="runtime">
+            <div class="imagen-estreno">
+              <img
+                class="img-fluid-estreno"
+                alt="Poster dinámico"
+                loading="lazy"
+              />
+            </div>
+
+            <div class="card-content">
+              <h5 class="subheader-2">Cronos</h5>
+              <p class="card-duracion"></p>
+
+              <div class="rating">
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="material-symbols-outlined star-half"
+                  >star_half</span
+                >
+                <span class="rating-text">4.5 / 5</span>
+              </div>
+
+              <button class="tag-genero" type="button">Ciencia ficción</button>
+
+              <a href="sinopsis.html" class="link-info">
+                <span class="material-symbols-outlined" aria-hidden="true"
+                  >info</span
+                >
+                <span>Ver sinopsis</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="estrenos-romance estrenos-seccion">
+          <!-- Card 1 -->
+          <div
+            class="card-estreno"
+            data-titulo="Sueño en otro idioma"
+            data-api="runtime"
+          >
+            <div class="imagen-estreno">
+              <img
+                class="img-fluid-estreno"
+                alt="Poster dinámico"
+                loading="lazy"
+              />
+            </div>
+
+            <div class="card-content">
+              <h5 class="subheader-2">Sueño en otro idioma</h5>
+              <p class="card-duracion"></p>
+
+              <div class="rating">
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="material-symbols-outlined star-half"
+                  >star_half</span
+                >
+                <span class="rating-text">4.5 / 5</span>
+              </div>
+
+              <button class="tag-genero" type="button">Romance</button>
+
+              <a href="sinopsis.html" class="link-info">
+                <span class="material-symbols-outlined" aria-hidden="true"
+                  >info</span
+                >
+                <span>Ver sinopsis</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div
+            class="card-estreno"
+            data-titulo="Me estás matando, Susana"
+            data-api="runtime"
+          >
+            <div class="imagen-estreno">
+              <img
+                class="img-fluid-estreno"
+                alt="Poster dinámico"
+                loading="lazy"
+              />
+            </div>
+
+            <div class="card-content">
+              <h5 class="subheader-2">Me estás matando, Susana</h5>
+              <p class="card-duracion"></p>
+
+              <div class="rating">
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="material-symbols-outlined star-half"
+                  >star_half</span
+                >
+                <span class="rating-text">3.5 / 5</span>
+              </div>
+
+              <button class="tag-genero" type="button">Romance</button>
+
+              <a href="sinopsis.html" class="link-info">
+                <span class="material-symbols-outlined" aria-hidden="true"
+                  >info</span
+                >
+                <span>Ver sinopsis</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div
+            class="card-estreno"
+            data-titulo="Amarte duele"
+            data-api="runtime"
+          >
+            <img
+              class="imagen-estreno"
+              src="./images/poster-pelicula-amarte-duele.jpg"
+              alt="Poster Amarte duele"
+              loading="lazy"
+            />
+
+            <div class="card-content">
+              <h5 class="subheader-2">Amarte duele</h5>
+              <p class="card-duracion">1h 40m</p>
+
+              <div class="rating">
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="rating-text">3 / 5</span>
+              </div>
+
+              <button class="tag-genero" type="button">Romance</button>
+
+              <a href="sinopsis.html" class="link-info">
+                <span class="material-symbols-outlined" aria-hidden="true"
+                  >info</span
+                >
+                <span>Ver sinopsis</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="estrenos-comedia estrenos-seccion">
+          <!-- Card 1 -->
+          <div
+            class="card-estreno"
+            data-titulo="La gran seducción"
+            data-api="runtime"
+          >
+            <div class="imagen-estreno">
+              <img
+                class="img-fluid-estreno"
+                alt="Poster dinámico"
+                loading="lazy"
+              />
+            </div>
+
+            <div class="card-content">
+              <h5 class="subheader-2">La gran seducción</h5>
+              <p class="card-duracion"></p>
+
+              <div class="rating">
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="rating-text">4 / 5</span>
+              </div>
+
+              <button class="tag-genero" type="button">Comedia</button>
+
+              <a href="sinopsis.html" class="link-info">
+                <span class="material-symbols-outlined" aria-hidden="true"
+                  >info</span
+                >
+                <span>Ver sinopsis</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div
+            class="card-estreno"
+            data-titulo="Temporada de patos"
+            data-api="runtime"
+          >
+            <div class="imagen-estreno">
+              <img
+                class="img-fluid-estreno"
+                alt="Poster dinámico"
+                loading="lazy"
+              />
+            </div>
+
+            <div class="card-content">
+              <h5 class="subheader-2">Temporada de patos</h5>
+              <p class="card-duracion"></p>
+
+              <div class="rating">
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="rating-text">4 / 5</span>
+              </div>
+
+              <button class="tag-genero" type="button">Comedia</button>
+
+              <a href="sinopsis.html" class="link-info">
+                <span class="material-symbols-outlined" aria-hidden="true"
+                  >info</span
+                >
+                <span>Ver sinopsis</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div
+            class="card-estreno"
+            data-titulo="No sé si cortarme las venas o dejármelas largas"
+            data-api="runtime"
+          >
+            <div class="imagen-estreno">
+              <img
+                class="img-fluid-estreno"
+                alt="Poster dinámico"
+                loading="lazy"
+              />
+            </div>
+
+            <div class="card-content">
+              <h5 class="subheader-2">No sé si cortarme las venas o...</h5>
+              <p class="card-duracion"></p>
+
+              <div class="rating">
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="material-symbols-outlined star-full">star</span>
+                <span class="rating-text">4 / 5</span>
+              </div>
+
+              <button class="tag-genero" type="button">Comedia</button>
+
+              <a href="sinopsis.html" class="link-info">
+                <span class="material-symbols-outlined" aria-hidden="true"
+                  >info</span
+                >
+                <span>Ver sinopsis</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- =============================================================== -->
+    <!-- Footer -->
+    <!-- =============================================================== -->
+
+    <footer class="main-footer">
+      <ul class="list">
+        <li><a href="index.html">Cartelera</a></li>
+        <li><a href="compras.html">Compras</a></li>
+        <li><a href="watchlist.html">Watchlist</a></li>
+        <li><a href="eventos.html">Eventos</a></li>
+      </ul>
+
+      <div class="redes-sociales">
+        <a
+          href="https://www.instagram.com/letterboxd/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Letterboxd en Instagram"
+        >
+          <img
+            src="./assets/icons/icon-insta.svg"
+            alt="Instagram"
+            class="social-icon"
+          />
+        </a>
+
+        <a
+          href="https://www.threads.net/@letterboxd"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Letterboxd en Threads"
+        >
+          <img
+            src="./assets/icons/icon-threads.svg"
+            alt="Threads"
+            class="social-icon"
+          />
+        </a>
+
+        <a
+          href="https://www.tiktok.com/@letterboxd"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Letterboxd en TikTok"
+        >
+          <img
+            src="./assets/icons/icon-tiktok.svg"
+            alt="TikTok"
+            class="social-icon"
+          />
+        </a>
+
+        <a
+          href="https://discord.com/invite/letterboxd"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Comunidad Letterboxd en Discord"
+        >
+          <img
+            src="./assets/icons/icon-discord.svg"
+            alt="Discord"
+            class="social-icon"
+          />
+        </a>
+      </div>
+
+      <div class="logos">
+        <img
+          src="./assets/icons/logo.svg"
+          alt="Letterboxd Circuito Independiente"
+          class="lci-logo"
+        />
+        <img
+          src="./assets/icons/letterboxd-logo-v-neg-rgb.svg"
+          alt="Letterboxd"
+          class="letterboxd-logo"
+        />
+      </div>
+
+      <p class="copyright">Letterboxd Circuito Independiente ⓒ 2026</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,91 @@
+{
+  "morelia": {
+    "titulo": "Coffee Talk: Nuevo Cine Mexicano",
+    "descripcion": "Charla informal sobre cine independiente mexicano.",
+    "horario": "Vie 15 marzo · 18:00 h",
+    "ubicacion": "Café Michelena, Calle Michelena 121, Centro",
+    "estado": "Michoacán",
+    "lat": 19.70078,
+    "lng": -101.18443
+  },
+
+  "roma": {
+    "titulo": "Beer & Movies: Cine de Culto MX",
+    "descripcion": "Proyección y charla acompañada de cerveza artesanal.",
+    "horario": "Sáb 22 marzo · 20:00 h",
+    "ubicacion": "Cine Tonalá, Tonalá 261, Roma Sur",
+    "estado": "CDMX",
+    "lat": 19.41474,
+    "lng": -99.16475
+  },
+
+  "coyoacan": {
+    "titulo": "Análisis de Película: Cine Autoral MX",
+    "descripcion": "Debate guiado sobre una película mexicana contemporánea.",
+    "horario": "Dom 30 marzo · 17:00 h",
+    "ubicacion": "Centro Cultural Elena Garro, Fernández Leal 43",
+    "estado": "CDMX",
+    "lat": 19.34994,
+    "lng": -99.16254
+  },
+
+  "polanco": {
+    "titulo": "Taller de Dirección Cinematográfica",
+    "descripcion": "Introducción práctica a la dirección en cine independiente.",
+    "horario": "Jue 10 abril · 19:00 h",
+    "ubicacion": "Espacio Cultural Polanco, Av. Ejército Nacional 453",
+    "estado": "CDMX",
+    "lat": 19.43307,
+    "lng": -99.19462
+  },
+
+  "sanmiguel": {
+    "titulo": "Proyección Especial: Cine de Autor MX",
+    "descripcion": "Función especial con diálogo post-proyección.",
+    "horario": "Vie 18 abril · 19:30 h",
+    "ubicacion": "Teatro Santa Ana, Relox 50",
+    "estado": "Guanajuato",
+    "lat": 20.91528,
+    "lng": -100.74391
+  },
+
+  "guanajuato": {
+    "titulo": "Cine y Comunidad: Cortos MX",
+    "descripcion": "Muestra de cortometrajes de cineastas emergentes.",
+    "horario": "Sáb 26 abril · 18:00 h",
+    "ubicacion": "Teatro Principal, Plaza de la Paz",
+    "estado": "Guanajuato",
+    "lat": 21.01909,
+    "lng": -101.25736
+  },
+
+  "monterrey": {
+    "titulo": "Beer & Cine Regio",
+    "descripcion": "Proyección de cine regio con charla posterior.",
+    "horario": "Vie 2 mayo · 20:00 h",
+    "ubicacion": "Nave Generadores, Parque Fundidora",
+    "estado": "Nuevo León",
+    "lat": 25.67804,
+    "lng": -100.28664
+  },
+
+  "spgg": {
+    "titulo": "Coffee Talk: Producción Independiente",
+    "descripcion": "Conversación sobre producir cine fuera de la industria.",
+    "horario": "Sáb 10 mayo · 11:00 h",
+    "ubicacion": "Café Tres Picos, Calzada del Valle 401",
+    "estado": "Nuevo León",
+    "lat": 25.66018,
+    "lng": -100.35841
+  },
+
+  "playadelcarmen": {
+    "titulo": "Cine al Aire Libre: Culto MX",
+    "descripcion": "Proyección nocturna de cine mexicano de culto.",
+    "horario": "Dom 18 mayo · 19:00 h",
+    "ubicacion": "Playa 38, Zona Centro",
+    "estado": "Quintana Roo",
+    "lat": 20.63088,
+    "lng": -87.06773
+  }
+}

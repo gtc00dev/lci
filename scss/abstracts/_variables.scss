@@ -1,0 +1,181 @@
+/* ======================== Variables ============================ */
+/* Escala grises */
+$color-dark:        #202930;
+$color-gray-dark:   #445566;
+$color-gray-light:  #99AABB;
+$color-white:       #FFFFFF;
+
+/* Primarios */
+$color-red:         #FC001D;
+$color-orange:      #FF7F00;
+$color-green:       #00E054;
+$color-blue:        #3FBCF4;
+
+
+/* Redondeos */
+$radius-xsmall: 4px;
+$radius-small:  8px;
+$radius-medium: 16px;
+$radius-large:  24px;
+$radius-xlarge: 40px;
+
+/* Tipografia y pesos */
+$font-primary: "Familjen Grotesk", sans-serif;
+$font-secondary: "Manrope", sans-serif;
+$font-regular: 400;
+$font-semibold: 600;
+$line-height-base: 1.5;
+
+/* Estilos texto mobile */
+/* Header */
+$h1-mobile: (
+  font-family: $font-primary,
+  font-size: 48px,
+  font-weight: $font-semibold,
+  line-height: $line-height-base
+);
+
+$h2-mobile: (
+  font-family: $font-primary,
+  font-size: 40px,
+  font-weight: $font-semibold,
+  line-height: $line-height-base
+);
+
+$subh1-mobile: (
+  font-family: $font-primary,
+  font-size: 32px,
+  font-weight: $font-semibold,
+  line-height: $line-height-base
+);
+
+$subh2-mobile: (
+  font-family: $font-primary,
+  font-size: 24px,
+  font-weight: $font-semibold,
+  line-height: $line-height-base
+);
+
+/* CTA */
+$cta-1-mobile: (
+  font-family: $font-primary,
+  font-size: 16px,
+  font-weight: $font-semibold,
+  line-height: $line-height-base
+);
+
+$cta-2-mobile: (
+  font-family: $font-primary,
+  font-size: 14px,
+  font-weight: $font-semibold,
+  line-height: $line-height-base
+);
+
+/* Body */
+$body-1-mobile: (
+  font-family: $font-secondary,
+  font-size: 16px,
+  font-weight: $font-regular,
+  line-height: $line-height-base
+);
+
+$body-2-mobile: (
+  font-family: $font-secondary,
+  font-size: 14px,
+  font-weight: $font-regular,
+  line-height: $line-height-base
+);
+
+$body-3-mobile: (
+  font-family: $font-secondary,
+  font-size: 12px,
+  font-weight: $font-regular,
+  line-height: $line-height-base
+);
+
+/* Estilos texto desktop */
+/* Header */
+$h1-desktop: (
+  font-family: $font-primary,
+  font-size: 56px,
+  font-weight: $font-semibold,
+  line-height: $line-height-base
+);
+
+$h2-desktop: (
+  font-family: $font-primary,
+  font-size: 48px,
+  font-weight: $font-semibold,
+  line-height: $line-height-base
+);
+
+$h3-desktop: (
+  font-family: $font-primary,
+  font-size: 40px,
+  font-weight: $font-semibold,
+  line-height: $line-height-base
+);
+
+$subh1-desktop: (
+  font-family: $font-primary,
+  font-size: 32px,
+  font-weight: $font-semibold,
+  line-height: $line-height-base
+);
+
+$subh2-desktop: (
+  font-family: $font-primary,
+  font-size: 24px,
+  font-weight: $font-semibold,
+  line-height: $line-height-base
+);
+
+/* CTA */
+$cta-1-desktop: (
+  font-family: $font-primary,
+  font-size: 18px,
+  font-weight: $font-semibold,
+  line-height: $line-height-base
+);
+
+$cta-2-desktop: (
+  font-family: $font-primary,
+  font-size: 16px,
+  font-weight: $font-semibold,
+  line-height: $line-height-base
+);
+
+/* Body text */
+$body-1-desktop: (
+  font-family: $font-secondary,
+  font-size: 18px,
+  font-weight: $font-regular,
+  line-height: $line-height-base
+);
+
+$body-2-desktop: (
+  font-family: $font-secondary,
+  font-size: 16px,
+  font-weight: $font-regular,
+  line-height: $line-height-base
+);
+
+$body-3-desktop: (
+  font-family: $font-secondary,
+  font-size: 14px,
+  font-weight: $font-regular,
+  line-height: $line-height-base
+);
+
+$body-4-desktop: (
+  font-family: $font-secondary,
+  font-size: 12px,
+  font-weight: $font-regular,
+  line-height: $line-height-base
+);
+
+/* ======================== Breakpoints ============================ */
+$grid-breakpoints: (
+  mobile: 360px,
+  desktop: 1400px
+);

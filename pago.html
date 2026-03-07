@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LCI-Pago</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/styles.css" />
+
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="preload" as="image" href="./images/hero-banner-4-desktop.jpg" />
+
+    <!--  Leaflet -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      defer
+    ></script>
+
+    <!--  Flatpickr -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/es.js"></script>
+
+    <!-- JS propios -->
+    <script src="./js/hamburguer-menu.js" defer></script>
+    <script src="./js/modal-sala-map.js" defer></script>
+    <script src="./js/modal-fecha-calendar.js" defer></script>
+    <script src="./js/favorite.js" defer></script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400..700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Icons -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+    />
+  </head>
+
+  <body>
+    <!-- =============================================================== -->
+    <!-- Navbar -->
+    <!-- =============================================================== -->
+
+    <nav class="navbar">
+      <div class="navbar-container">
+        <button class="hamburguer-menu" aria-label="Abrir menú">
+          <span class="material-symbols-outlined icon-open">menu</span>
+        </button>
+
+        <a href="index.html" aria-label="Ir a cartelera">
+          <img
+            src="./assets/icons/logo.svg"
+            alt="Cartelera"
+            class="navbar-logo"
+            loading="lazy"
+          />
+        </a>
+
+        <ul class="navbar-menu">
+          <button class="sidenav-close" aria-label="Cerrar menú">
+            <span class="material-symbols-outlined">cancel</span>
+          </button>
+
+          <li>
+            <a href="index.html" class="nav-btn-red">
+              <span class="material-symbols-outlined nav-btn-icon">movie</span>
+              <span class="nav-btn-text">Cartelera</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="compras.html" class="nav-btn-orange">
+              <span class="material-symbols-outlined nav-btn-icon"
+                >confirmation_number</span
+              >
+              <span class="nav-btn-text">Compras</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="watchlist.html" class="nav-btn-green">
+              <span class="material-symbols-outlined nav-btn-icon"
+                >favorite</span
+              >
+              <span class="nav-btn-text">Watchlist</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="eventos.html" class="nav-btn-blue">
+              <span class="material-symbols-outlined nav-btn-icon">event</span>
+              <span class="nav-btn-text">Eventos</span>
+            </a>
+          </li>
+        </ul>
+
+        <a href="watchlist.html" class="nav-icon icon-link" aria-label="Cuenta">
+          <span class="material-symbols-outlined">account_circle</span>
+        </a>
+      </div>
+    </nav>
+
+    <!-- =============================================================== -->
+    <!-- Main -->
+    <!-- =============================================================== -->
+
+    <main class="main-content">
+      <!-- =============================================================== -->
+      <!-- Botones -->
+      <!-- =============================================================== -->
+
+      <div class="botones">
+        <a href="reserva.html" class="back" aria-label="Volver a horarios">
+          <span class="material-symbols-outlined"> arrow_left_alt </span>
+        </a>
+      </div>
+
+      <!-- =============================================================== -->
+      <!-- Banner -->
+      <!-- =============================================================== -->
+
+      <div class="banner-hero">
+        <img
+          src="./images/hero-banner-7-desktop.jpg"
+          class="d-block w-100"
+          alt="Cineteca de Michoacán Morelia"
+          loading="lazy"
+        />
+
+        <div class="banner-caption">
+          <h1 class="heading-1">Y tu mamá también</h1>
+
+          <div class="horario-funcion">
+            <span class="material-symbols-outlined">calendar_check</span>
+            <p>Horario: Lun 16 Feb, 8:30 AM</p>
+          </div>
+
+          <div class="ubicacion-cine">
+            <span class="material-symbols-outlined">location_on</span>
+            <p>Cineteca de Morelia</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- =============================================================== -->
+      <!-- Forms -->
+      <!-- =============================================================== -->
+
+      <div class="form-datos-cliente">
+        <div class="mb-3">
+          <label for="inputNombre" class="form-label label-modal">
+            Nombre(s)
+          </label>
+          <input
+            type="text"
+            class="form-control input-modal"
+            id="inputNombre"
+            placeholder="Escribe tu nombre(s)"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="inputApellidos" class="form-label label-modal">
+            Apellidos
+          </label>
+          <input
+            type="text"
+            class="form-control input-modal"
+            id="inputApellidos"
+            placeholder="Escribe tu apellido"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="inputCorreo" class="form-label label-modal">
+            Correo electrónico
+          </label>
+          <input
+            type="email"
+            class="form-control input-modal"
+            id="inputCorreo"
+            placeholder="Escribe tu correo electrónico"
+          />
+        </div>
+      </div>
+
+      <!-- =============================================================== -->
+      <!-- Metodos de pago -->
+      <!-- =============================================================== -->
+
+      <div class="payment-methods">
+        <p>Métodos de pago</p>
+
+        <div class="input-group mb-3 payment-option">
+          <div class="input-group-text">
+            <input
+              class="form-check-input mt-0"
+              type="radio"
+              name="paymentMethod"
+              id="visa"
+              value="visa"
+              checked
+            />
+          </div>
+
+          <span class="input-group-text bg-white border-start-0 border-end-0">
+            <img src="./assets/icons/visa.svg" alt="Visa" height="24" />
+          </span>
+
+          <label class="form-control d-flex align-items-center" for="visa">
+            Visa
+          </label>
+        </div>
+
+        <div class="input-group mb-3 payment-option">
+          <div class="input-group-text">
+            <input
+              class="form-check-input mt-0"
+              type="radio"
+              name="paymentMethod"
+              id="mastercard"
+              value="mastercard"
+            />
+          </div>
+
+          <span class="input-group-text bg-white border-start-0 border-end-0">
+            <img
+              src="./assets/icons/mastercard.svg"
+              alt="Mastercard"
+              height="24"
+            />
+          </span>
+
+          <label
+            class="form-control d-flex align-items-center"
+            for="mastercard"
+          >
+            Mastercard
+          </label>
+        </div>
+
+        <div class="input-group payment-option">
+          <div class="input-group-text">
+            <input
+              class="form-check-input mt-0"
+              type="radio"
+              name="paymentMethod"
+              id="paypal"
+              value="paypal"
+            />
+          </div>
+
+          <span class="input-group-text bg-white border-start-0 border-end-0">
+            <img src="./assets/icons/paypal.svg" alt="PayPal" height="24" />
+          </span>
+
+          <label class="form-control d-flex align-items-center" for="paypal">
+            PayPal
+          </label>
+        </div>
+      </div>
+
+      <!-- =============================================================== -->
+      <!-- Confirmacion -->
+      <!-- =============================================================== -->
+
+      <div class="proceder-pago">
+        <div class="subtotal">
+          <p>Subtotal</p>
+          <p>$240 MXN</p>
+        </div>
+
+        <div class="cargo-servicio">
+          <p>Cargo por servicios</p>
+          <p>$36 MXN</p>
+        </div>
+
+        <div class="total">
+          <h3 class="subheader-2">Total</h3>
+          <h3 class="subheader-2">$276</h3>
+        </div>
+
+        <ul class="sinopsis-actions">
+          <li>
+            <a href="boletos.html" class="nav-btn-green">
+              <span class="nav-btn-text" id="continueText">
+                Confirmar pago
+              </span>
+              <span class="material-symbols-outlined"> arrow_right_alt </span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </main>
+
+    <!-- =============================================================== -->
+    <!-- Footer -->
+    <!-- =============================================================== -->
+
+    <footer class="main-footer">
+      <ul class="list">
+        <li><a href="index.html">Cartelera</a></li>
+        <li><a href="compras.html">Compras</a></li>
+        <li><a href="watchlist.html">Watchlist</a></li>
+        <li><a href="eventos.html">Eventos</a></li>
+      </ul>
+
+      <div class="redes-sociales">
+        <a
+          href="https://www.instagram.com/letterboxd/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Letterboxd en Instagram"
+        >
+          <img
+            src="./assets/icons/icon-insta.svg"
+            alt="Instagram"
+            class="social-icon"
+          />
+        </a>
+
+        <a
+          href="https://www.threads.net/@letterboxd"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Letterboxd en Threads"
+        >
+          <img
+            src="./assets/icons/icon-threads.svg"
+            alt="Threads"
+            class="social-icon"
+          />
+        </a>
+
+        <a
+          href="https://www.tiktok.com/@letterboxd"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Letterboxd en TikTok"
+        >
+          <img
+            src="./assets/icons/icon-tiktok.svg"
+            alt="TikTok"
+            class="social-icon"
+          />
+        </a>
+
+        <a
+          href="https://discord.com/invite/letterboxd"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Comunidad Letterboxd en Discord"
+        >
+          <img
+            src="./assets/icons/icon-discord.svg"
+            alt="Discord"
+            class="social-icon"
+          />
+        </a>
+      </div>
+
+      <div class="logos">
+        <img
+          src="./assets/icons/logo.svg"
+          alt="Letterboxd Circuito Independiente"
+          class="lci-logo"
+        />
+        <img
+          src="./assets/icons/letterboxd-logo-v-neg-rgb.svg"
+          alt="Letterboxd"
+          class="letterboxd-logo"
+        />
+      </div>
+
+      <p class="copyright">Letterboxd Circuito Independiente ⓒ 2026</p>
+    </footer>
+  </body>
+</html>
